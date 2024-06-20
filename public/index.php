@@ -1,7 +1,7 @@
 <?php function renderPage() { ?>
 
 <h1>My habits</h1>
-<p>Welcome to the home page</p>
+<p>Welcome to the home page TEST</p>
 
 <?php
 }
