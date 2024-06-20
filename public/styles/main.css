@@ -1,0 +1,99 @@
+/* fonts */
+@font-face {
+    font-family: 'Pixeloid';
+    src: url('../fonts/pixeloid.ttf') format('truetype');
+}
+
+/* General */
+:root {
+    --color-1: #0ee4e4;
+    --color-1-bright: #00ffff;
+    --color-2: #eb0565;
+    --color-2-bright: #ff00a8;
+    --color-3: #bc11cc;
+    --color-3-bright: #d400ff;
+    --bg-color: #2b2b2b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: 'Pixeloid', sans-serif;
+    color: white;
+}
+
+/* Layout */
+body {
+    display: grid;
+    min-height: 100vh;
+    grid-template-rows: 1fr 1fr auto;
+}
+
+main {
+    width: min(95%, 60rem);
+    margin: 0 auto;
+}
+
+/* Navigation */
+nav > ul {
+    display: flex;
+    list-style: none;
+    justify-content: flex-end;
+    gap: 2rem;
+    align-items: center;
+}
+
+nav .page-link {
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: all 0.4s ease-in-out;
+}
+
+.profile > img {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+}
+
+nav .page-link:hover {
+    filter: brightness(2);
+}
+
+nav li:nth-child(1) .page-link {
+    color: var(--color-1);
+    text-shadow: 0 0 5px var(--color-1);
+}
+
+nav li:nth-child(1) a:hover {
+    text-shadow: 0 0 10px var(--color-1);
+}
+
+nav li:nth-child(2) .page-link {
+    color: var(--color-2);
+    text-shadow: 0 0 5px var(--color-2);
+}
+
+nav li:nth-child(2) a:hover {
+    text-shadow: 0 0 10px var(--color-2);
+}
+
+nav li:nth-child(3) .page-link {
+    color: var(--color-3);
+    text-shadow: 0 0 5px var(--color-3);
+}
+
+nav li:nth-child(3) .page-link:hover {
+    text-shadow: 0 0 10px var(--color-3);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    font-size: 1rem;
+    padding: 1rem;
+}
