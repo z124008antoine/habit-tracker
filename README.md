@@ -1,7 +1,7 @@
 ## Run the Docker Image
 
 Build:  `docker build -t my-apache .`
-Run:    `docker run -dit --name apache-server -p 8080:80 my-apache`
+Run:    `docker run -dit --name apache-server -p 8080:80 my-apache -e DB_HOST=host -e DB_USER=user -e DB_PASS=pass -e DB_NAME=name`
 Access: [http://localhost:8080/](http://localhost:8080/)
 
 ## Sensitive Information
