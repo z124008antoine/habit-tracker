@@ -1,5 +1,4 @@
 <?php
-    echo getenv("PRODUCTION");
     if (getenv("PRODUCTION") != "true") {
         putenv("DB_HOST=localhost");
         putenv("DB_USER=root");
