@@ -1,7 +1,9 @@
-<?php function renderPage() { ?>
+<?php include './auth/guard.php'; ?>
 
+<?php function renderPage() { ?>
+    
 <h1>My habits</h1>
-<p>Welcome to the home page TEST</p>
+<p>Welcome to the home page</p>
 
 <?php
 }

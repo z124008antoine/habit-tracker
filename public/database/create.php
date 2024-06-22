@@ -1,5 +1,5 @@
 <?php
-    include './db.php';
+    include __DIR__ . "/db.php";
 
     // check if the database is empty
     $res = $conn->query("SHOW TABLES");
@@ -12,6 +12,7 @@
         id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         username VARCHAR(30) NOT NULL,
         email VARCHAR(50) NOT NULL,
+        profile_picture INT(6) DEFAULT 0,
         password VARCHAR(255) NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     )";
@@ -34,7 +35,7 @@
     include './dummies.php'; // include the dummies records
     
     foreach ($dummy_users as $user) {
-        $hashed = hash('sha512', $user['password']);
+        $hashed = password_hash($user['password'], PASSWORD_DEFAULT);
         $conn->query("INSERT INTO users (username, email, password)
             VALUES ('{$user['username']}', '{$user['email']}', '{$hashed}')");
     }
