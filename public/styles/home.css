@@ -1,0 +1,19 @@
+h1 {
+    font-size: 2.5em;
+    margin: 2rem 0;
+}
+
+.habit {
+    margin: 1rem 0;
+    display: grid;
+    grid-template-columns: 50% 5% auto;
+    align-items: center;
+    background-image: url('/images/ui/line-pink-big.png');
+    background-repeat: no-repeat;
+    background-position: bottom left;
+}
+
+.habit-title {
+    padding-left: 2rem;
+    padding-bottom: 3rem;
+}

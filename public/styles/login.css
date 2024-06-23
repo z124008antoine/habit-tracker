@@ -14,3 +14,7 @@ input {
 label {
     font-size: 1.5rem;
 }
+
+.neon-button {
+    margin-left: auto;
+}

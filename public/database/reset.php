@@ -3,5 +3,6 @@
     // Do not use this file in production.
     include './db.php';
 
+    $conn->query("DROP TABLE realizations");
     $conn->query("DROP TABLE habits");
     $conn->query("DROP TABLE users");

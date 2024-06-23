@@ -6,6 +6,7 @@
     <title><?php echo $documentTitle ?></title>
     <link rel="stylesheet" href="styles/main.css">
     <script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js" defer></script>
+    <?php echo $includeHead ?? '' ?>
 </head>
 
 <body>

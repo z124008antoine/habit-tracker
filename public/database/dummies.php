@@ -52,3 +52,21 @@
         'frequency' => 1,
         'reward' => 2,
     ];
+
+    $dummy_realizations = [];
+    $dummy_realizations[] = [
+        "habit_id" => 1,
+        "date" => "2024-06-20",
+    ];
+    $dummy_realizations[] = [
+        "habit_id" => 1,
+        "date" => "2024-06-21",
+    ];
+    $dummy_realizations[] = [
+        "habit_id" => 1,
+        "date" => "2024-06-23",
+    ];
+    $dummy_realizations[] = [
+        "habit_id" => 2,
+        "date" => "2024-06-20",
+    ];

@@ -13,15 +13,11 @@
 /* Animations */
 @keyframes light-up {
     10% { filter: none; }
-    12% { filter: drop-shadow(0 0 5px var(--light-color)); }
-    14% { filter: none; }
-    
+    15% { filter: drop-shadow(0 0 5px var(--light-color)); }
     20% { filter: none; }
-    22% { filter: drop-shadow(0 0 5px var(--light-color)); }
-    24% { filter: none; }
 
-    50% { filter: none; }
-    52% { filter: drop-shadow(0 0 5px var(--light-color)); }
+    30% { filter: none; }
+    35% { filter: drop-shadow(0 0 5px var(--light-color)); }
     100% { filter: drop-shadow(0 0 5px var(--light-color)); }
 }
 
@@ -33,7 +29,7 @@
     --color-2-bright: #ff00a8;
     --color-3: #bc11cc;
     --color-3-bright: #d400ff;
-    --bg-color: #2b2b2b;
+    --bg-color: #1d1d1d;
 }
 
 * {
@@ -62,15 +58,20 @@ h1, h2, h3, h4, h5, h6 {
     height: 3em;
     width: 5.7em;
     color: white;
-    margin-left: auto;
     font-family: 'Pixeloid', sans-serif;
     font-size: 1.5rem;
     cursor: pointer;
     --light-color: var(--color-1-bright);
 }
 .neon-button:hover {
-    animation: light-up 2s forwards;
+    animation: light-up 1s forwards;
 }
+.neon-button:disabled, .neon-button[disabled] {
+    filter: grayscale(1);
+    cursor: not-allowed;
+    animation: none;
+}
+
 .text-input {
     border: none;
     background-color: transparent;
