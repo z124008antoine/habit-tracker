@@ -41,7 +41,7 @@
     $conn->query($habits);
     $conn->query($realizations);
 
-    include './dummies.php'; // include the dummies records
+    include __DIR__ . '/dummies.php'; // include the dummies records
     
     foreach ($dummy_users as $user) {
         $hashed = password_hash($user['password'], PASSWORD_DEFAULT);

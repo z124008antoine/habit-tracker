@@ -1,10 +1,10 @@
-<?php include './auth/guard.php'; ?>
+<?php include __DIR__ . '/auth/guard.php'; ?>
 
 <?php function renderPage() { ?>
     
 <h1>My habits</h1>
 <?php
-    include __DIR__ . './database/habits.php';
+    include __DIR__ . '/database/habits.php';
     $habits = get_todays_habits($_SESSION['user']);
     foreach ($habits as $key => $value) {
 ?>

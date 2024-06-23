@@ -1,7 +1,7 @@
 <?php
     // WARNING: This file is meant for development purposes only. It will reset the database and remove all data.
     // Do not use this file in production.
-    include './db.php';
+    include __DIR__ . '/db.php';
 
     $conn->query("DROP TABLE realizations");
     $conn->query("DROP TABLE habits");
