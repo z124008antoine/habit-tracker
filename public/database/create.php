@@ -2,10 +2,12 @@
     include __DIR__ . "/db.php";
 
     // check if the database is empty
-    $res = $conn->query("SHOW TABLES");
-    // if not empty
-    if ($res->num_rows > 0) {
-        die("Database is not empty");
+    $statement = $conn->prepare("SHOW TABLES");
+    $statement->execute();
+    $result = $statement->fetch();
+    if ($result) {
+        echo "Tables already exist.";
+        die();
     }
 
     $users = "CREATE TABLE users (
