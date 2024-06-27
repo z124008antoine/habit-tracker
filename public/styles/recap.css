@@ -1,0 +1,26 @@
+.habits {
+    display: grid;
+    grid-template-columns: 20% 1fr;
+}
+
+.days {
+    display: flex;
+    flex-direction: row;
+}
+
+.day-title {
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
+}
+
+.day {
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--color-1);
+    filter: brightness(0.5);
+}
+
+.day.completed {
+    filter: brightness(1);
+}

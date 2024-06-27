@@ -9,7 +9,10 @@
     include 'database/db.php';
     if (isset($_POST["mail"]) && isset($_POST["password"]))
     {
-        $user = $conn->query("SELECT id, password, profile_picture FROM users WHERE email = '{$_POST["mail"]}'")->fetch_assoc();
+        $statement = $conn->prepare("SELECT id, password, profile_picture FROM users WHERE email = ?");
+        $statement->execute([$_POST["mail"]]);
+        $user = $statement->fetch();
+        
         if (password_verify($_POST["password"], $user["password"])) {
             $_SESSION["user"] = $user["id"];
             $_SESSION["pfp"] = $user["profile_picture"];

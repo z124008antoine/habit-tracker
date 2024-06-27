@@ -10,8 +10,9 @@
             ON habits.id = realizations.habit_id
             AND realizations.date = CURDATE()
             WHERE user_id = $user_id";
-        $result = $conn->query($sql);
-        return $result;
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+        return $statement->fetchAll();
     }
     
     if (isset($_GET['complete'])) {
@@ -28,4 +29,41 @@
         $conn->query($sql);
         echo json_encode(['success' => true]);
         exit();
+    }
+
+    function get_weeks_habits($user_id) {
+        global $conn;
+
+        $startOfWeek = new DateTime('monday this week');
+        $startOfWeekStr = $startOfWeek->format('Y-m-d');
+
+        $sql = "SELECT habits.id, name, date,
+            CASE WHEN realizations.habit_id IS NULL THEN 0 ELSE 1 END AS completed
+            FROM habits
+            LEFT JOIN realizations
+            ON habits.id = realizations.habit_id
+            AND realizations.date >= '$startOfWeekStr'
+            WHERE user_id = $user_id";
+
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+        $res = $statement->fetchAll();
+        $habits = [];
+        // set completed to false for each day of the week
+        foreach ($res as $habit) {
+            if (!isset($habits[$habit['id']])) {
+                $habits[$habit['id']] = [
+                    'id' => $habit['id'],
+                    'name' => $habit['name'],
+                    'completed' => [0, 0, 0, 0, 0, 0, 0]
+                ];
+            }
+            if (!is_null($habit['date'])) {
+                $date = new DateTime($habit['date']);
+                $day = $date->format('N') - 1;
+                $habits[$habit['id']]['completed'][$day] = $habit['completed'];
+            }
+        }
+
+        return $habits;
     }

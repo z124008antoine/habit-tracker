@@ -1,7 +1,7 @@
 <nav>
     <ul>
         <li><a class="page-link" href="/">My habits</a></li>
-        <li><a class="page-link" href="dashboard.php">Dashboard</a></li>
+        <li><a class="page-link" href="recap.php">Recap</a></li>
         <li><a class="page-link" href="profiles.php">Profiles</a></li>
         <li>
             <a href="profile.php" class="profile">
