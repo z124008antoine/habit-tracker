@@ -2,34 +2,65 @@
 
 <?php function renderPage() { ?>
 
-<h1>My Week</h1>
-<div class="habits">
-
-    <h2>Day</h2>
-    <div class="days">
-        <span class="day-title">M</span>
-        <span class="day-title">T</span>
-        <span class="day-title">W</span>
-        <span class="day-title">T</span>
-        <span class="day-title">F</span>
-        <span class="day-title">S</span>
-        <span class="day-title">S</span>
-    </div>
-<?php
-    include __DIR__ . '/database/habits.php';
-    $habits = get_weeks_habits($_SESSION['user']);
-    foreach ($habits as $habit) {
-?>
-
-    <h2><?= $habit['name'] ?></h2>
-    <div class="days">
+<section>
+    <h1>My Week</h1>
+    <div class="week-habits">
+        <h2>Day</h2>
+        <span class="week-day-title">M</span>
+        <span class="week-day-title">T</span>
+        <span class="week-day-title">W</span>
+        <span class="week-day-title">T</span>
+        <span class="week-day-title">F</span>
+        <span class="week-day-title">S</span>
+        <span class="week-day-title">S</span>
+    <?php
+        include __DIR__ . '/database/habits.php';
+        $weekHabits = get_weeks_habits($_SESSION['user']);
+        foreach ($weekHabits as $habit) {
+            ?>
+    
+        <h2><?= $habit['name'] ?></h2>
         <?php foreach ($habit['completed'] as $completed) { ?>
-            <div class="day <?= $completed ? 'completed' : '' ?>"></div>
+            <div class="week-day <?= $completed ? 'completed' : '' ?>"></div>
         <?php } ?>
+    
+    <?php } ?>
     </div>
+</section>
 
-<?php } ?>
-</div>
+<section>
+    <h1>My Year</h1>
+    <div class="year-days">
+        <span class="year-day-title">M</span>
+        <span class="year-day-title">T</span>
+        <span class="year-day-title">W</span>
+        <span class="year-day-title">T</span>
+        <span class="year-day-title">F</span>
+        <span class="year-day-title">S</span>
+        <span class="year-day-title">S</span>
+    <?php
+        $yearHabits = get_year_habits($_SESSION['user']);
+        $maxCompleted = 0;
+        foreach ($yearHabits as $nbCompleted) {
+            if ($nbCompleted > $maxCompleted) {
+                $maxCompleted = $nbCompleted;
+            }
+        }
+        
+        $currentDay = new DateTime('first day of january');
+        foreach ($yearHabits as $nbCompleted) {
+            ?>
+            <div
+                class="year-day"
+                style="filter: grayscale(<?= ($maxCompleted - $nbCompleted + 1) / ($maxCompleted + 1) ?>);"
+                title="<?= $currentDay->format('dS F') ?>"
+            ></div>
+        <?php
+            $currentDay->modify('+1 day');
+        }
+        ?>
+    </div>
+</section>
 
 <?php
 }

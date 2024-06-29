@@ -31,6 +31,11 @@
         exit();
     }
 
+    // returns an array of habits with the following structure:
+    // ['id' => [
+    //     'name' => string,
+    //     'completed' => [0, 1, 0, 0, 0, 0, 0] // 0 for not completed, 1 for completed for each day of the week
+    // ]]
     function get_weeks_habits($user_id) {
         global $conn;
 
@@ -53,7 +58,6 @@
         foreach ($res as $habit) {
             if (!isset($habits[$habit['id']])) {
                 $habits[$habit['id']] = [
-                    'id' => $habit['id'],
                     'name' => $habit['name'],
                     'completed' => [0, 0, 0, 0, 0, 0, 0]
                 ];
@@ -65,5 +69,40 @@
             }
         }
 
+        return $habits;
+    }
+
+    // returns an array of habits with the following structure:
+    // [int, int, ...] where each int is the number of completions for each day since the beggining of the year
+    function get_year_habits($user_id) {
+        global $conn;
+        $startDay = new DateTime('first day of january');
+        $startDayStr = $startDay->format('Y-m-d');
+
+        $sql = 'SELECT realizations.date, COUNT(*) AS completions
+            FROM habits
+            JOIN realizations
+            ON habits.id = realizations.habit_id
+            WHERE user_id = ?
+            AND realizations.date >= ?
+            GROUP BY realizations.date
+            ORDER BY realizations.date';
+
+        $statement = $conn->prepare($sql);
+        $statement->execute([$user_id, $startDayStr]);
+        $res = $statement->fetchAll();
+        $habits = [];
+
+        $today = new DateTime();
+        $todayNb = $today->format('z');
+        for ($i = 0; $i < $todayNb; $i++) {
+            $habits[$i] = 0;
+        }
+
+        foreach ($res as $habit) {
+            $date = new DateTime($habit['date']);
+            $day = $date->format('z');
+            $habits[$day] = $habit['completions'];
+        }
         return $habits;
     }
