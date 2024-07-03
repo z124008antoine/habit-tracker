@@ -23,3 +23,5 @@
     }
 
     echo "<br>Done.";
+
+    include __DIR__ . '/create.php';

@@ -4,23 +4,38 @@ section {
 
 h1 {
     margin: 1rem 0;
+    background-image: url('/images/ui/line-pink.png');
+    background-repeat: no-repeat;
+    padding-bottom: 0.3em;
+    padding-top: 1em;
+    padding-left: 0.8em;
+    margin-left: -1rem;
 }
 
 .week-habits {
     display: grid;
-    grid-template-columns: 20% repeat(7, 2rem);
-    grid-template-rows: repeat(auto, 2rem);
-    gap: 4px;
+    grid-template-columns: 20% repeat(7, min-content);
+    grid-template-rows: repeat(auto, 5rem);
+    align-items: center;
+
+    row-gap: 8px;
+    column-gap: 4px;
+}
+
+.week-habits h2 {
+    text-align: right;
+    margin-right: 1rem;
 }
 
 .week-day-title {
     text-align: center;
     margin-top: auto;
+    margin-bottom: -10px;
 }
 
 .week-day {
-    width: 2rem;
-    height: 2rem;
+    width: 1.5rem;
+    height: 1.5rem;
     background-color: var(--color-1);
     filter: brightness(0.3);
 }
@@ -41,6 +56,10 @@ h1 {
     width: 1rem;
     height: 1rem;
     background-color: var(--color-2);
+}
+
+.year-day.all-completed {
+    transform: rotate(45deg) scale(0.7071);
 }
 
 .year-day-title {

@@ -5,7 +5,7 @@
 <section>
     <h1>My Week</h1>
     <div class="week-habits">
-        <h2>Day</h2>
+        <span></span>
         <span class="week-day-title">M</span>
         <span class="week-day-title">T</span>
         <span class="week-day-title">W</span>
@@ -51,9 +51,9 @@
         foreach ($yearHabits as $nbCompleted) {
             ?>
             <div
-                class="year-day"
-                style="filter: grayscale(<?= ($maxCompleted - $nbCompleted + 1) / ($maxCompleted + 1) ?>);"
-                title="<?= $currentDay->format('dS F') ?>"
+                class="year-day<?= $nbCompleted === $maxCompleted ? ' all-completed' : '' ?>"
+                style="filter: grayscale(<?= ($maxCompleted - $nbCompleted) / $maxCompleted ?>);"
+                title="<?= $currentDay->format('dS F') . ': ' . $nbCompleted . ' completed' ?>"
             ></div>
         <?php
             $currentDay->modify('+1 day');
