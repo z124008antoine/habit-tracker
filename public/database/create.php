@@ -47,8 +47,8 @@
     
     foreach ($dummy_users as $user) {
         $hashed = password_hash($user['password'], PASSWORD_DEFAULT);
-        $conn->query("INSERT INTO users (username, email, password)
-            VALUES ('{$user['username']}', '{$user['email']}', '{$hashed}')");
+        $conn->query("INSERT INTO users (username, email, password, profile_picture)
+            VALUES ('{$user['username']}', '{$user['email']}', '{$hashed}', '{$user['profile_picture']}')");
     }
 
     foreach ($dummy_habits as $habit) {

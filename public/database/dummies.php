@@ -4,16 +4,19 @@
         'username' => 'John',
         'password' => 'password',
         'email' => 'john@gmail.com',
+        'profile_picture' => 0,
     ];
     $dummy_users[] = [
         'username' => 'Jane',
         'password' => 'password',
         'email' => 'jane@gmail.com',
+        'profile_picture' => 1,
     ];
     $dummy_users[] = [
         'username'=> 'Jack',
         'password'=> 'password',
         'email'=> 'jack@gmail.com',
+        'profile_picture'=> 2,
     ];
 
     $dummy_habits = [];
