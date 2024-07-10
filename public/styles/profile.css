@@ -1,7 +1,3 @@
-section {
-    margin: 5rem 0;
-}
-
 main {
     width: min(90%);
     margin: 0 auto;
@@ -12,9 +8,10 @@ main {
     grid-template-areas:
       'profile bio'
       'profile activity';
-    column-gap: 100px;
+    column-gap: 120px;
     row-gap: 50px;
     padding: 10px;
+    justify-content: center;
 }
 
 .grid-container > div {
@@ -70,6 +67,8 @@ main {
 
 .bio {
     position: relative; /* Add this line */
+    max-width: 800px; /* Adjust based on your layout */
+    padding: 20px; /* Add some padding around the text */
     margin-top: 20px; /* Adds space above the bio */
     box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Adds a subtle shadow for depth */
     border-image: url('/images/ui/text-input.png') 30 stretch; /* Example path and settings */
@@ -99,6 +98,15 @@ main {
     margin: 0; /* Removes default margin for paragraphs */
     text-align: left; /* Aligns the text to the left */
     font-size: 16px; /* Adjusts the text size to a standard readable size */
+    word-wrap: break-word; /* Ensure long words do not cause layout issues */
+}
+
+.bio h4{
+    padding: 0px 22px;
+    font-style: italic; /* Adds italic style to the text */
+    margin: 4px 0 10px 0; /* Removes default margin for headings */
+    text-align: left; /* Aligns the text to the left */
+    font-size: 24px; /* Adjusts the text size to a standard readable size */
 }
 
 .activity{

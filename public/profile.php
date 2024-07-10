@@ -13,15 +13,8 @@
             <button class="profile-edit-button">Edit Profile</button>
         </div>
         <div class="bio">
-            <p>
-                👋 Hi, I'm @Ev0gs</br>
-                👀 I'm interested in video games, music (bass instrument), sport and coding.</br>
-                👨‍🎓 I'm currently learning a lot of new notions thanks to the engineer school CESI Bordeaux I'm studying at. These notions are mostly coding such as SQL/C/C++/Arduino/Javascript/HTML/CSS/PHP/Web etc...</br>
-                🎮 I made a personal project, who turn around video games, on unity. It's a 2D platformer video game and it is my first one in my life. I decided to make one because I would like to work in the video game industry.</br>
-                💻 I'm currently on a personal project in relation to video game industry that will be released one day.</br>
-                💕 I'm looking to collaborate for an internship on video game development or project around coding.</br>
-                📫 How to reach me: <a href="mailto:pierre.latorse@viacesi.fr">pierre.latorse@viacesi.fr</a></br>
-            </p>
+            <h4>Bio</h4>
+            <p><?php echo $_SESSION['bio'] ?></p>
             <button class="bio-edit-button"></button>
         </div>
         <div class="activity">

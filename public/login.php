@@ -9,13 +9,14 @@
     include 'database/db.php';
     if (isset($_POST["mail"]) && isset($_POST["password"]))
     {
-        $statement = $conn->prepare("SELECT id, password, profile_picture, username FROM users WHERE email = ?");
+        $statement = $conn->prepare("SELECT id, password, profile_picture, username, bio FROM users WHERE email = ?");
         $statement->execute([$_POST["mail"]]);
         $user = $statement->fetch();
         
         if (password_verify($_POST["password"], $user["password"])) {
             $_SESSION["user"] = $user["id"];
             $_SESSION["username"] = $user["username"];
+            $_SESSION["bio"] = $user["bio"];
             $_SESSION["pfp"] = $user["profile_picture"];
             header("Location: /");
             exit();
