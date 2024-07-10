@@ -2,6 +2,115 @@ section {
     margin: 5rem 0;
 }
 
+main {
+    width: min(90%);
+    margin: 0 auto;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+      'profile bio'
+      'profile activity';
+    column-gap: 100px;
+    row-gap: 50px;
+    padding: 10px;
+}
+
+.grid-container > div {
+    text-align: center;
+    padding: 20px 0;
+    font-size: 30px;
+}
+
+.profile {
+    grid-area: profile;
+}
+
+.bio {
+    grid-area: bio;
+}
+
+.activity {
+    grid-area: activity;
+}
+
+.avatar {
+    width: 300px; /* Match the width of the image to keep the container's shape consistent */
+    height: 300px; /* Match the height of the image */
+    border-radius: 50%; /* This maintains the circular shape for the container */
+    background-color: #e0e0e0; /* Example background color */
+    display: flex; /* Ensures the contents are properly centered */
+    justify-content: center; /* Centers the contents horizontally */
+    align-items: center; /* Centers the contents vertically */
+    overflow: hidden; /* Ensures no overflow outside the circular boundary */
+    margin-bottom: 20px; /* Adds space below the avatar */
+}
+
+.avatar img {
+    width: 300px; /* Adjust based on your preference */
+    height: 300px; /* Make sure width and height are equal */
+    border-radius: 50%; /* This creates the circular shape */
+    object-fit: cover; /* Ensures the image covers the area without stretching */
+}
+
+.profile-edit-button {
+    display: block; /* Keeps the button as a block element */
+    width: 100%; /* Makes the button take the full width of its container */
+    margin: 20px auto; /* Increases space above the button and centers it horizontally */
+    padding: 10px 0; /* Adjusts padding for better visual appearance, removing horizontal padding */
+    background-color: #3e3e3e; /* Example background color */
+    color: white; /* Text color */
+    border: none; /* Removes the border */
+    border-radius: 5px; /* Adds rounded corners */
+    cursor: pointer; /* Changes the cursor to a pointer on hover */
+    font-size: 16px; /* Adjusts the font size */
+    text-align: center; /* Ensures the text is centered */
+}
+
+.bio {
+    position: relative; /* Add this line */
+    margin-top: 20px; /* Adds space above the bio */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Adds a subtle shadow for depth */
+    border-image: url('/images/ui/text-input.png') 30 stretch; /* Example path and settings */
+    border-image-slice: 30; /* Adjust this value based on your image */
+    border-image-repeat: stretch; /* This will stretch the image to fit the border */
+    border-image-width: 30px; /* Adjust this value based on your image */
+}
+
+.bio-edit-button {
+    position: absolute;
+    top: 20px; /* Increased distance from the top */
+    right: 20px; /* Increased distance from the right */
+    width: 30px; /* Adjust based on the size of your image */
+    height: 30px; /* Adjust based on the size of your image */
+    background-image: url('/images/ui/edit.png'); /* Path to your image */
+    background-size: cover; /* Ensures the image covers the button area */
+    background-position: center; /* Centers the background image */
+    border: none;
+    border-radius: 5px; /* Rounded corners, if desired */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+    background-color: transparent; /* Ensures no background color */
+    filter: invert(100%); /* Inverts the color to white, works if the original image is black */
+}
+
+.bio p{
+    padding: 0px 20px;
+    margin: 0; /* Removes default margin for paragraphs */
+    text-align: left; /* Aligns the text to the left */
+    font-size: 16px; /* Adjusts the text size to a standard readable size */
+}
+
+.activity{
+    margin-left: 20px; /* Adds space to the left of the activity section */
+}
+
+.activity h1
+{
+    text-align: left;
+    font-size: 1em;
+}
+
 h1 {
     margin: 1rem 0;
     background-image: url('/images/ui/line-pink.png');
