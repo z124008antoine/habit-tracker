@@ -28,8 +28,6 @@
 
 <?php function renderPage() { ?>
 
-<link href="/styles/login.css" rel="stylesheet">
-
 <form method="post" action="#">
     <label for="mail">Email</label>
     <input class="text-input" type="email" name="mail" id="mail" required>
@@ -37,14 +35,14 @@
     <input class="text-input" type="password" name="password" id="password" required>
     <button type="submit" class="neon-button">Login</button>
     <?php if (isset($error)) { ?>
-        <p><?= $error ?></p>
+    <p><?= $error ?></p>
     <?php } ?>
-    <a href="/register.php">Register</a>
+    <a class="neon-link" href="/registration.php">Register</a>
 </form>
-
 <?php
 }
 
 $documentTitle = 'Login'; // Set the title of the document for the layout
-include 'layout/layout.php';
+$includeHead = '<link rel="stylesheet" href="/styles/login.css">'; // Include the CSS for the page
+include 'layout/layout_no_nav.php';
 ?>

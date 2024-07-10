@@ -11,6 +11,8 @@
             <div class="username"><?php echo $_SESSION['username'] ?></div>
             <!-- <a href="edit-profile.php" class="edit-profile">Edit profile</a> -->
             <button class="profile-edit-button">Edit Profile</button>
+            <button class="profile-edit-button"> <a href="/logout.php">Logout</a></button>
+
         </div>
         <div class="bio">
             <h4>Bio</h4>
@@ -28,7 +30,7 @@
                 <span class="year-day-title">F</span>
                 <span class="year-day-title">S</span>
                 <span class="year-day-title">S</span>
-            <?php
+                <?php
                 $yearHabits = get_year_habits($_SESSION['user']);
                 $maxCompleted = 0;
                 foreach ($yearHabits as $nbCompleted) {
@@ -42,7 +44,7 @@
                     ?>
                     <div
                         class="year-day<?= $nbCompleted === $maxCompleted ? ' all-completed' : '' ?>"
-                        style="filter: grayscale(<?= ($maxCompleted - $nbCompleted) / $maxCompleted ?>);"
+                    style="filter: grayscale(<?= ($maxCompleted - $nbCompleted) / $maxCompleted ?>);"
                         title="<?= $currentDay->format('dS F') . ': ' . $nbCompleted . ' completed' ?>"
                     ></div>
                 <?php
@@ -53,7 +55,7 @@
         </div>
     </div>
 </section>
-    
+
 <?php
 }
 
