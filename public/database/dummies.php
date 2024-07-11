@@ -5,18 +5,21 @@
         'password' => 'password',
         'email' => 'john@gmail.com',
         'profile_picture' => 0,
+        'bio' => 'Hello, I am John. I like to exercise and read.',
     ];
     $dummy_users[] = [
         'username' => 'Jane',
         'password' => 'password',
         'email' => 'jane@gmail.com',
         'profile_picture' => 1,
+        'bio' => 'Hello, I am Jane. I like to meditate and write.',
     ];
     $dummy_users[] = [
         'username'=> 'Jack',
         'password'=> 'password',
         'email'=> 'jack@gmail.com',
         'profile_picture'=> 2,
+        'bio'=> 'Hello, I am Jack. I like to code and cook.',
     ];
 
     $dummy_habits = [];
