@@ -108,22 +108,6 @@ main {
 }
 
 /* Navigation */
-@media screen and (max-width: 500px){
-    nav {
-        display: none;
-    }
-    nav > ul {
-        flex-direction: column;
-        height: 100vh;
-        justify-content: center!important;
-    }
-    nav.active {
-        display: block;
-    }
-    .hamburger {
-        display: block;
-    }
-}
 nav {
     position: fixed;
     top: 0;
@@ -186,33 +170,59 @@ nav li:nth-child(3) .page-link:hover {
 }
 
 .hamburger {
-    display: none;
     position: fixed;
+    display: none; /* flex on mobile */
+    flex-direction: column;
+    font-size: 10px;
+    gap: 1em;
     top: 1rem;
     left: 1rem;
     z-index: 2;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
     background-color: transparent;
     cursor: pointer;
     border: none;
     padding: 0;
     margin: 0;
 }
-.hamburger > div {
-    width: 8px;
-    height: 8px;
-    background-color: transparent;
-    transition: background-color 0.2s ease-in-out;
+.hamburger .line {
+    display: flex;
+    flex-direction: row;
 }
-.hamburger.open > div.open {
+.hamburger .line:nth-child(1) { filter: drop-shadow(3px 3px 0 var(--color-2)); }
+.hamburger .line:nth-child(2) { filter: drop-shadow(3px 3px 0 var(--color-1)); }
+.hamburger .line:nth-child(3) { filter: drop-shadow(3px 3px 0 var(--color-3)); }
+.hamburger .square {
+    width: 0.5em;
+    height: 0.5em;
     background-color: white;
-    transition-delay: 0.2s;
+    transition: transform 0.4s ease-in-out;
 }
-.hamburger:not(.open) > div.close {
-    background-color: white;
-    transition-delay: 0.2s; 
+.hamburger.open .square {
+    transform: none!important;
+}
+.hamburger .line.middle .square {
+    transition: opacity 0.4s ease-in-out;
+    opacity: 0;
+}
+.hamburger.open .line.middle .square {
+    opacity: 1;
+}
+
+@media screen and (max-width: 500px){
+    nav {
+        display: none;
+    }
+    nav > ul {
+        flex-direction: column;
+        height: 100vh;
+        justify-content: center;
+    }
+    nav.active {
+        display: block;
+    }
+    .hamburger {
+        display: flex;
+    }
 }
 
 /* Footer */
