@@ -30,6 +30,7 @@
     --color-3: #bc11cc;
     --color-3-bright: #d400ff;
     --bg-color: #1d1d1d;
+    --bg-color-dark: #0f1313;
 }
 
 * {
@@ -94,9 +95,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Layout */
 .layout {
+    padding-top: 5rem;
     display: grid;
     min-height: 100vh;
-    grid-template-rows: 5rem 1fr auto;
+    grid-template-rows: 1fr auto;
     align-items: center;
 }
 
@@ -106,6 +108,29 @@ main {
 }
 
 /* Navigation */
+@media screen and (max-width: 500px){
+    nav {
+        display: none;
+    }
+    nav > ul {
+        flex-direction: column;
+        height: 100vh;
+        justify-content: center!important;
+    }
+    nav.active {
+        display: block;
+    }
+    .hamburger {
+        display: block;
+    }
+}
+nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    background-color: var(--bg-color-dark);
+}
 nav > ul {
     display: flex;
     list-style: none;
@@ -120,6 +145,9 @@ nav .page-link {
     transition: all 0.4s ease-in-out;
 }
 
+.profile {
+    height: 100%;
+}
 .profile > img {
     width: 4rem;
     height: 4rem;
@@ -155,6 +183,36 @@ nav li:nth-child(3) .page-link {
 
 nav li:nth-child(3) .page-link:hover {
     text-shadow: 0 0 10px var(--color-3);
+}
+
+.hamburger {
+    display: none;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+.hamburger > div {
+    width: 8px;
+    height: 8px;
+    background-color: transparent;
+    transition: background-color 0.2s ease-in-out;
+}
+.hamburger.open > div.open {
+    background-color: white;
+    transition-delay: 0.2s;
+}
+.hamburger:not(.open) > div.close {
+    background-color: white;
+    transition-delay: 0.2s; 
 }
 
 /* Footer */
