@@ -11,7 +11,7 @@
             <div class="username"><?php echo $_SESSION['username'] ?></div>
             <!-- <a href="edit-profile.php" class="edit-profile">Edit profile</a> -->
             <button class="profile-edit-button">Edit Profile</button>
-            <button class="profile-edit-button"> <a href="/logout.php">Logout</a></button>
+            <button class="profile-edit-button" onclick="window.location.href = '/logout.php';">Logout</button>
 
         </div>
         <div class="bio">
