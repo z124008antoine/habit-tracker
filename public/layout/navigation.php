@@ -9,5 +9,9 @@
             </a>
         </li>
     </ul>
+    <?php
+    include __DIR__ . '/../components/pixel_mask.php';
+    pixel_mask(20, 'nav-mask');
+    ?>
 </nav>
 <?php include __DIR__ . '/../components/hamburger.php'; ?>
