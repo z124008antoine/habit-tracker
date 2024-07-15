@@ -15,9 +15,6 @@
         
         if (password_verify($_POST["password"], $user["password"])) {
             $_SESSION["user"] = $user["id"];
-            $_SESSION["username"] = $user["username"];
-            $_SESSION["bio"] = $user["bio"];
-            $_SESSION["pfp"] = $user["profile_picture"];
             header("Location: /");
             exit();
         } else {
