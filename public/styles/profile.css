@@ -3,33 +3,48 @@ main {
     margin: 0 auto;
 }
 
-.grid-container {
-    display: grid;
-    grid-template-areas:
-      'profile bio'
-      'profile activity';
-    column-gap: 120px;
-    row-gap: 50px;
-    padding: 10px;
-    justify-content: center;
+.container {
+    display: flex;
+    flex-direction: row;
+    max-width: 1200px; /* Set the maximum width for the container */
+    margin: 0 auto; /* Center the container horizontally */
+    gap: 80px; /* Add gap between the columns */
+    padding: 10px; /* Add padding to avoid content touching the container edge */
 }
 
-.grid-container > div {
-    text-align: center;
-    padding: 20px 0;
-    font-size: 30px;
+.left-column {
+    flex: 1;
+    max-width: 350px; /* Set the maximum width for the left column */
+    padding: 20px;
+    /* background-color: #f8f9fa; */
+    display: flex; /* Make left-column a flex container */
+    justify-content: center; /* Center children horizontally */
+    align-items: center; /* Center children vertically */
+    flex-direction: column; /* Stack children vertically */
 }
 
-.profile {
-    grid-area: profile;
+.right-column {
+    flex: 1;
+    max-width: 800px; /* Set the maximum width for the right column */
+    padding: 20px;
+    /* background-color: #e9ecef; */
+    display: flex; /* Make left-column a flex container */
+    justify-content: left; /* Center children horizontally */
+    align-items: flex-start; /* Center children vertically */
+    flex-direction: column; /* Stack children vertically */
+    gap: 40px; /* Add gap between the elements */
 }
 
-.bio {
-    grid-area: bio;
+#edit-profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Adjust the gap between form elements as needed */
+    width: 100%;
+    display: none; /* Hide the form by default */
 }
 
-.activity {
-    grid-area: activity;
+#edit-profile-form label{
+    margin-top: 15px;
 }
 
 .avatar {
@@ -67,7 +82,7 @@ main {
 
 .bio {
     position: relative; /* Add this line */
-    max-width: 800px; /* Adjust based on your layout */
+    width: 100%; /* Ensures the bio takes the full width of its container */
     padding: 20px; /* Add some padding around the text */
     margin-top: 20px; /* Adds space above the bio */
     box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Adds a subtle shadow for depth */
@@ -107,6 +122,7 @@ main {
     margin: 4px 0 10px 0; /* Removes default margin for headings */
     text-align: left; /* Aligns the text to the left */
     font-size: 24px; /* Adjusts the text size to a standard readable size */
+    text-decoration: underline; /* Adds an underline to the text */
 }
 
 .activity{
@@ -116,7 +132,7 @@ main {
 .activity h1
 {
     text-align: left;
-    font-size: 1em;
+    /* font-size: 1em; */
 }
 
 h1 {
@@ -184,4 +200,91 @@ h1 {
     height: 1rem;
     text-align: center;
     font-size: 0.8rem;
+}
+
+/* CSS */
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+input[type="text"] {
+    width: 100%; /* Set a fixed width */
+    height: 40px; /* Set a fixed height */
+    padding: 10px; /* Add padding inside the input */
+    border: 1px solid #ccc; /* Add a border */
+    border-radius: 5px; /* Add rounded corners */
+    background-image: url('path/to/your/background-image.jpg'); /* Path to your image */
+    background-size: cover; /* Ensure the background image covers the entire input */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-position: center; /* Center the background image */
+    resize: none; /* Disable resizing */
+    overflow: hidden; /* Prevent overflow */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* Adjusting for different sizes */
+input[type="text"]:focus {
+    filter: drop-shadow(0 0 5px var(--color-2-bright));
+    background-size: 100% 100%; /* Ensure the background size adjusts when resizing */
+}
+
+.large-text-input {
+    background-image: url('/images/ui/text-input.png');
+    width: 100%; /* Set a fixed width */
+    height: 150px; /* Set a fixed height */
+    padding: 10px; /* Add padding inside the textarea */
+    border: 1px solid #ccc; /* Add a border */
+    border-radius: 5px; /* Add rounded corners */
+    background-size: cover; /* Ensure the background image covers the entire textarea */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-position: center; /* Center the background image */
+    resize: vertical; /* Allow resizing both horizontally and vertically */
+    overflow: auto; /* Allow scrolling if the content overflows */
+}
+.large-text-input:focus {
+    filter: drop-shadow(0 0 5px var(--color-2-bright));
+    background-size: 100% 100%; /* Adjust the background size when focused */	
+}
+
+#edit-profile-form-buttons {
+    width: 100%; /* Set the width to 100% */
+    display: flex; /* Use Flexbox */
+    justify-content: space-between; /* Align one button to the left and the other to the right */
+    gap: 15px; /* Add space between the buttons */
+    display: none; /* Hide the buttons by default */
+}
+
+#edit-profile-form-buttons #cancel-btn {
+    background-color: #d9534f; /* Example background color */
+    display: block; /* Keeps the button as a block element */
+    width: 50%; /* Makes the button take the full width of its container */
+    margin: 20px auto; /* Increases space above the button and centers it horizontally */
+    padding: 10px 0; /* Adjusts padding for better visual appearance, removing horizontal padding */
+    color: white; /* Text color */
+    border: none; /* Removes the border */
+    border-radius: 5px; /* Adds rounded corners */
+    cursor: pointer; /* Changes the cursor to a pointer on hover */
+    font-size: 16px; /* Adjusts the font size */
+    text-align: center; /* Ensures the text is centered */
+}
+
+#edit-profile-form-buttons #save-btn {
+    display: block; /* Keeps the button as a block element */
+    width: 100%; /* Makes the button take the full width of its container */
+    margin: 20px auto; /* Increases space above the button and centers it horizontally */
+    padding: 10px 0; /* Adjusts padding for better visual appearance, removing horizontal padding */
+    background-color: #3e3e3e; /* Example background color */
+    color: white; /* Text color */
+    border: none; /* Removes the border */
+    border-radius: 5px; /* Adds rounded corners */
+    cursor: pointer; /* Changes the cursor to a pointer on hover */
+    font-size: 16px; /* Adjusts the font size */
+    text-align: center; /* Ensures the text is centered */
 }
