@@ -114,6 +114,7 @@ nav {
     right: 0;
     width: 100%;
     background-color: var(--bg-color-dark);
+    z-index: 10;
 }
 nav > ul {
     display: flex;
