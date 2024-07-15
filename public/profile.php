@@ -20,6 +20,7 @@
                 <input type="text" id="username" name="username" value="<?php echo $user_data['username']; ?>">
                 <label for="bio">Bio:</label>
                 <textarea class="large-text-input" id="bio" name="bio"><?php echo $user_data['bio']; ?></textarea>
+                <div id="bio-char-count">0 / 3000 characters</div>
             </form>
              
             <button class="profile-edit-button" id="edit-profile-button">Edit Profile</button>
@@ -75,32 +76,49 @@
 </section>
 
 <script>
-    const editProfileButton = document.getElementById('edit-profile-button');
-    const usernameDisplay = document.getElementById('username-display');
-    const bioDisplay = document.getElementById('bio-display');
-    const editForm = document.getElementById('edit-profile-form');
-    const saveButton = document.getElementById('save-btn');
-    const cancelButton = document.getElementById('cancel-btn');
-    const formButtons = document.getElementById('edit-profile-form-buttons');
+    document.addEventListener('DOMContentLoaded', function() {
+        const editProfileButton = document.getElementById('edit-profile-button');
+        const usernameDisplay = document.getElementById('username-display');
+        const bioDisplay = document.getElementById('bio-display');
+        const editForm = document.getElementById('edit-profile-form');
+        const saveButton = document.getElementById('save-btn');
+        const cancelButton = document.getElementById('cancel-btn');
+        const formButtons = document.getElementById('edit-profile-form-buttons');
+        const bioTextarea = document.getElementById('bio');
+        
+        // Initialize the character count on page load
+        updateCharacterCount();
 
-    editProfileButton.addEventListener('click', () => {
-        usernameDisplay.style.display = 'none';
-        editForm.style.display = 'flex';
-        editProfileButton.style.display = 'none';
-        formButtons.style.display = 'flex';
-    });
+        // Function to update character count
+        function updateCharacterCount() {
+            var charCountDisplay = document.getElementById('bio-char-count');
+            var currentLength = bioTextarea.value.length;
+            charCountDisplay.textContent = `${currentLength} / 3000 characters`;
+        }
 
-    cancelButton.addEventListener('click', () => {
-        usernameDisplay.style.display = 'block';
-        editForm.style.display = 'none';
-        editProfileButton.style.display = 'block';
-        formButtons.style.display = 'none';
-        editForm.reset();
-    });
+        bioTextarea.addEventListener('input', updateCharacterCount);
 
-    saveButton.addEventListener('click', () => {
-        editForm.submit();
+        editProfileButton.addEventListener('click', () => {
+            usernameDisplay.style.display = 'none';
+            editForm.style.display = 'flex';
+            editProfileButton.style.display = 'none';
+            formButtons.style.display = 'flex';
+            updateCharacterCount();
+        });
+
+        cancelButton.addEventListener('click', () => {
+            usernameDisplay.style.display = 'block';
+            editForm.style.display = 'none';
+            editProfileButton.style.display = 'block';
+            formButtons.style.display = 'none';
+            editForm.reset();
+        });
+
+        saveButton.addEventListener('click', () => {
+            editForm.submit();
+        });
     });
+    
 </script>
 <?php
 }
