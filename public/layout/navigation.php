@@ -5,8 +5,9 @@
         <li><a class="page-link" href="profiles.php">Profiles</a></li>
         <li>
             <a href="profile.php" class="profile">
-                <img alt="profile picture" src="images/avatars/avatar_<?php echo isset($_SESSION["pfp"]) ? $_SESSION["pfp"] : 0 ?>.png">
+                <img alt="profile picture" src="images/avatars/avatar_<?php echo $_SESSION["pfp"] ?? 0 ?>.png">
             </a>
         </li>
     </ul>
 </nav>
+<?php include __DIR__ . '/../components/hamburger.php'; ?>

@@ -30,6 +30,7 @@
     --color-3: #bc11cc;
     --color-3-bright: #d400ff;
     --bg-color: #1d1d1d;
+    --bg-color-dark: #0f1313;
 }
 
 * {
@@ -94,9 +95,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Layout */
 .layout {
+    padding-top: 5rem;
     display: grid;
     min-height: 100vh;
-    grid-template-rows: 5rem 1fr auto;
+    grid-template-rows: 1fr auto;
     align-items: center;
 }
 
@@ -106,6 +108,13 @@ main {
 }
 
 /* Navigation */
+nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    background-color: var(--bg-color-dark);
+}
 nav > ul {
     display: flex;
     list-style: none;
@@ -120,6 +129,9 @@ nav .page-link {
     transition: all 0.4s ease-in-out;
 }
 
+.profile {
+    height: 100%;
+}
 .profile > img {
     width: 4rem;
     height: 4rem;
@@ -155,6 +167,62 @@ nav li:nth-child(3) .page-link {
 
 nav li:nth-child(3) .page-link:hover {
     text-shadow: 0 0 10px var(--color-3);
+}
+
+.hamburger {
+    position: fixed;
+    display: none; /* flex on mobile */
+    flex-direction: column;
+    font-size: 10px;
+    gap: 1em;
+    top: 1rem;
+    left: 1rem;
+    z-index: 2;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+.hamburger .line {
+    display: flex;
+    flex-direction: row;
+}
+.hamburger .line:nth-child(1) { filter: drop-shadow(3px 3px 0 var(--color-2)); }
+.hamburger .line:nth-child(2) { filter: drop-shadow(3px 3px 0 var(--color-1)); }
+.hamburger .line:nth-child(3) { filter: drop-shadow(3px 3px 0 var(--color-3)); }
+.hamburger .square {
+    width: 0.5em;
+    height: 0.5em;
+    background-color: white;
+    transition: transform 0.4s ease-in-out;
+}
+.hamburger.open .square {
+    transform: none!important;
+}
+.hamburger .line.middle .square {
+    transition: opacity 0.4s ease-in-out;
+    opacity: 0;
+}
+.hamburger.open .line.middle .square {
+    opacity: 1;
+}
+
+@media screen and (max-width: 500px){
+    nav {
+        display: none;
+    }
+    nav > ul {
+        flex-direction: column;
+        height: 100vh;
+        justify-content: center;
+    }
+    nav.active {
+        display: block;
+    }
+    .hamburger {
+        display: flex;
+    }
 }
 
 /* Footer */

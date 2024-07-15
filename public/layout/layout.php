@@ -10,8 +10,8 @@
 </head>
 
 <body>
+    <?php include __DIR__ . '/navigation.php'; ?>
     <div class="layout">
-        <?php include __DIR__ . '/navigation.php'; ?>
 
         <main>
             <?php renderPage(); ?>
