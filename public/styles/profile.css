@@ -72,12 +72,13 @@ main {
     margin: 20px auto; /* Increases space above the button and centers it horizontally */
     padding: 10px 0; /* Adjusts padding for better visual appearance, removing horizontal padding */
     background-color: #3e3e3e; /* Example background color */
-    color: white; /* Text color */
     border: none; /* Removes the border */
     border-radius: 5px; /* Adds rounded corners */
     cursor: pointer; /* Changes the cursor to a pointer on hover */
     font-size: 16px; /* Adjusts the font size */
     text-align: center; /* Ensures the text is centered */
+    font-family: 'Pixeloid', sans-serif;
+    color: white;
 }
 
 .bio {
@@ -248,6 +249,7 @@ input[type="text"]:focus {
     resize: vertical; /* Allow resizing both horizontally and vertically */
     overflow: auto; /* Allow scrolling if the content overflows */
 }
+
 .large-text-input:focus {
     filter: drop-shadow(0 0 5px var(--color-2-bright));
     background-size: 100% 100%; /* Adjust the background size when focused */	
@@ -273,6 +275,7 @@ input[type="text"]:focus {
     cursor: pointer; /* Changes the cursor to a pointer on hover */
     font-size: 16px; /* Adjusts the font size */
     text-align: center; /* Ensures the text is centered */
+    font-family: 'Pixeloid', sans-serif;
 }
 
 #edit-profile-form-buttons #save-btn {
@@ -287,4 +290,6 @@ input[type="text"]:focus {
     cursor: pointer; /* Changes the cursor to a pointer on hover */
     font-size: 16px; /* Adjusts the font size */
     text-align: center; /* Ensures the text is centered */
+    font-family: 'Pixeloid', sans-serif;
 }
+
