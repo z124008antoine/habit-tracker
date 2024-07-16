@@ -49,6 +49,17 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 100;
 }
 
+h2.form-title{
+    margin: 3rem 0 1em 0;
+    padding: 0 0 1.5em 0;
+    text-align: center;
+    align-items: center;
+    background-image: url('/images/ui/form_title.png');
+    background-repeat: no-repeat;
+    /* background-size: contain; */
+    background-position: bottom;
+}
+
 /* Themed elements */
 .neon-button {
     border: none;
@@ -72,6 +83,26 @@ h1, h2, h3, h4, h5, h6 {
     cursor: not-allowed;
     animation: none;
 }
+
+/* Negative button variant (for cancel or similar)*/
+.neon-button-negativ {
+    border: none;
+    background-color: transparent;
+    background-image: url('/images/ui/button_pink.png');
+    background-size: 100% 100%;
+    aspect-ratio: 152/80;
+    height: 3em;
+    width: 5.7em;
+    color: white;
+    font-family: 'Pixeloid', sans-serif;
+    font-size: 1.5rem;
+    cursor: pointer;
+    --light-color: var(--color-3-bright);
+}
+.neon-button-negativ:hover {
+    animation: light-up 1s forwards;
+}
+
 
 .text-input {
     border: none;

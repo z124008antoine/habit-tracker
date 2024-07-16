@@ -3,19 +3,22 @@
 
 <?php function renderPage() { ?>
 
-<h2>Modify an existing Habit</h2>
+<h2 class="form-title">Modify Habit</h2>
 
 <form method="POST" action="database/habits.php">
     <input type="hidden" name="user_id" value="<?php echo $_SESSION['user']; ?>">
     <input type="hidden" name="private" value="<?php echo 0; ?>">
 
-    <?php $allhabits = get_all_habits($_SESSION['user']);
+    <div style="text-align: center;">
+        <?php $allhabits = get_all_habits($_SESSION['user']);
     foreach ($allhabits as $habit) { ?>
-    <label for="habit_<?php echo $habit['id']; ?>">
-        <input type="radio" id="habit_<?php echo $habit['id']; ?>" name="habit_id" value="<?php echo $habit['id']; ?>">
-        <?php echo $habit['name']; ?>
-    </label><br>
-    <?php } ?>
+        <label for="habit_<?php echo $habit['id']; ?>">
+            <input type="radio" id="habit_<?php echo $habit['id']; ?>" name="habit_id"
+                value="<?php echo $habit['id']; ?>">
+            <?php echo $habit['name']; ?>
+        </label><br>
+        <?php } ?>
+    </div>
 
     <br>
     <label for="habit_name">New Habit Name:</label>
@@ -25,11 +28,12 @@
     <input class="text-input" type="text" id="habit_description" name="habit_description" required
         placeholder="buy: 1x tomato, 1x potato"><br><br>
     <label for="habit_reward">New Habit Reward:</label>
-    <input class="text-input" type="number" id="habit_reward" name="habit_reward" required min="1" step="1"><br><br>
+    <input class="text-input" type="number" id="habit_reward" name="habit_reward" required min="1" step="1"
+        placeholder=2><br><br>
     <input type="submit" class="neon-button" name="modify_habits" value="Modify">
 </form>
 <div style="text-align: center;">
-    <button class="neon-button" onclick="window.location.href = '/index.php';">Cancel</button>
+    <button class="neon-button-negativ" onclick="window.location.href = '/index.php';">Cancel</button>
 </div>
 
 <?php

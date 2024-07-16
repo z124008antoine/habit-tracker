@@ -11,7 +11,7 @@
     <button class="neon-button" onclick="window.location.href = '/modify_habit_form.php';"> ~ Modify</button>
 </div>
 <div class="delete-habit">
-    <button class="neon-button" onclick="window.location.href = '/delete_habit_form.php';"> - Delete</button>
+    <button class="neon-button-negativ" onclick="window.location.href = '/delete_habit_form.php';"> - Delete</button>
 </div>
 
 <?php

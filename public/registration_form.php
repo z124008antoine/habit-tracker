@@ -1,6 +1,6 @@
 <?php function renderPage() { ?>
 
-<h2>Registration</h2>
+<h2 class="form-title">Registration</h2>
 
 <form method="POST" action="register.php" onsubmit="return validateForm()">
     <label for="username">Username:</label>
