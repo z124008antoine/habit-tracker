@@ -15,7 +15,7 @@ if (isset($_POST['register'])) {
         $count = $stmt->fetchColumn();
 
         if ($count > 0) {
-                echo "Username or email already in use. Go back to <a href='registration.php'>Registration</a>";
+                echo "Username or email already in use. Go back to <a href='registration_form.php'>Registration</a>";
                 $documentTitle = 'Registration_Failed'; // Set the title of the document for the layout
         } else {
                 // Hash the password

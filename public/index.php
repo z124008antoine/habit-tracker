@@ -7,6 +7,9 @@
 <div class="create-habit">
     <button class="neon-button" onclick="window.location.href = '/create_habit_form.php';">+ Create</button>
 </div>
+<div class="delete-habit">
+    <button class="neon-button" onclick="window.location.href = '/delete_habit_form.php';">- Delete</button>
+</div>
 
 <?php
     include __DIR__ . '/database/habits.php';

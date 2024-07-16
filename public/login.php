@@ -35,7 +35,7 @@
     <?php if (isset($error)) { ?>
     <p><?= $error ?></p>
     <?php } ?>
-    <a class="neon-link" href="/registration.php">Register</a>
+    <a class="neon-link" href="/registration_form.php">Register</a>
 </form>
 <?php
 }

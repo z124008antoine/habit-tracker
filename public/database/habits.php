@@ -14,6 +14,14 @@
         $statement->execute();
         return $statement->fetchAll();
     }
+
+    function get_all_habits($user_id) {
+        global $conn;
+        $sql = "SELECT id, name FROM habits WHERE user_id = $user_id";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+        return $statement->fetchAll();
+    }
     
     if (isset($_GET['complete'])) {
         session_start();
@@ -133,4 +141,15 @@
             echo "Error: " . $stmt->errorInfo()[2];
             $documentTitle = 'Habit_Creation_Failed'; 
         }
+    }
+
+    #delete habit
+    if (isset($_POST['delete_habits'])) {
+        $selectedHabits = $_POST['habits'];
+        foreach ($selectedHabits as $habit_id) {
+            $sql = "DELETE FROM habits WHERE id = $habit_id";
+            $conn->query($sql);
+        }
+        header("Location: /index.php");
+        exit();
     }
