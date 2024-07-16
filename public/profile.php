@@ -33,44 +33,44 @@
         <div class="right-column">
             <!-- Content for the right column -->
             <div class="bio">
-            <h4>Bio</h4>
-            <p id="bio-display"><?php echo $user_data['bio'] ?></p>
-            <!-- <button class="bio-edit-button"></button> -->
-        </div>
-        <div class="activity">
-            <?php include __DIR__ . '/database/habits.php'; ?>
-            <h1>My Year</h1>
-            <div class="year-days">
-                <span class="year-day-title">M</span>
-                <span class="year-day-title">T</span>
-                <span class="year-day-title">W</span>
-                <span class="year-day-title">T</span>
-                <span class="year-day-title">F</span>
-                <span class="year-day-title">S</span>
-                <span class="year-day-title">S</span>
-                <?php
-                $yearHabits = get_year_habits($_SESSION['user']);
-                $maxCompleted = 0;
-                foreach ($yearHabits as $nbCompleted) {
-                    if ($nbCompleted > $maxCompleted) {
-                        $maxCompleted = $nbCompleted;
-                    }
-                }
-                
-                $currentDay = new DateTime('first day of january');
-                foreach ($yearHabits as $nbCompleted) {
-                    ?>
-                    <div
-                        class="year-day<?= $nbCompleted === $maxCompleted ? ' all-completed' : '' ?>"
-                    style="filter: grayscale(<?= ($maxCompleted - $nbCompleted) / $maxCompleted ?>);"
-                        title="<?= $currentDay->format('dS F') . ': ' . $nbCompleted . ' completed' ?>"
-                    ></div>
-                <?php
-                    $currentDay->modify('+1 day');
-                }
-                ?>
+                <h4>Bio</h4>
+                <p id="bio-display"><?php echo $user_data['bio'] ?></p>
+                <!-- <button class="bio-edit-button"></button> -->
             </div>
-        </div>
+            <div class="activity">
+                <?php include __DIR__ . '/database/habits.php'; ?>
+                <h1>My Year</h1>
+                <div class="year-days">
+                    <span class="year-day-title">M</span>
+                    <span class="year-day-title">T</span>
+                    <span class="year-day-title">W</span>
+                    <span class="year-day-title">T</span>
+                    <span class="year-day-title">F</span>
+                    <span class="year-day-title">S</span>
+                    <span class="year-day-title">S</span>
+                    <?php
+                    $yearHabits = get_year_habits($_SESSION['user']);
+                    $maxCompleted = 0;
+                    foreach ($yearHabits as $nbCompleted) {
+                        if ($nbCompleted > $maxCompleted) {
+                            $maxCompleted = $nbCompleted;
+                        }
+                    }
+                    
+                    $currentDay = new DateTime('first day of january');
+                    foreach ($yearHabits as $nbCompleted) {
+                        ?>
+                        <div
+                            class="year-day<?= $nbCompleted === $maxCompleted ? ' all-completed' : '' ?>"
+                        style="filter: grayscale(<?= ($maxCompleted - $nbCompleted) / $maxCompleted ?>);"
+                            title="<?= $currentDay->format('dS F') . ': ' . $nbCompleted . ' completed' ?>"
+                        ></div>
+                    <?php
+                        $currentDay->modify('+1 day');
+                    }
+                    ?>
+                </div>
+            </div>
 
         </div>
     </div>
@@ -94,6 +94,10 @@
         function updateCharacterCount() {
             var charCountDisplay = document.getElementById('bio-char-count');
             var currentLength = bioTextarea.value.length;
+            if(currentLength > 3000){
+                bioTextarea.value = bioTextarea.value.substring(0, 3000);
+                currentLength = bioTextarea.value.length;
+            }
             charCountDisplay.textContent = `${currentLength} / 3000 characters`;
         }
 
