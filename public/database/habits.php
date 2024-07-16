@@ -106,3 +106,31 @@
         }
         return $habits;
     }
+
+
+    # Create a new habit
+    if (isset($_POST['create_habit'])) {
+        $user_id = $_POST['user_id'];
+        $private = $_POST['private'];
+        $habit_name = $_POST['habit_name'];
+        $habit_description = $_POST['habit_description'];
+        $habit_reward = $_POST['habit_reward'];
+
+        // Insert habit into the database
+        $query = "INSERT INTO habits (user_id, private, name, description, reward) VALUES (:user_id, :private, :habit_name, :habit_description, :habit_reward)";
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':user_id', $user_id);
+        $stmt->bindParam(':private', $private);
+        $stmt->bindParam(':habit_name', $habit_name);
+        $stmt->bindParam(':habit_description', $habit_description);
+        $stmt->bindParam(':habit_reward', $habit_reward);
+
+        if ($stmt->execute()) {
+            header("Location: /index.php");
+            exit();
+            $documentTitle = 'Habit_Created';
+        } else {
+            echo "Error: " . $stmt->errorInfo()[2];
+            $documentTitle = 'Habit_Creation_Failed'; 
+        }
+    }
