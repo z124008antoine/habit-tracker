@@ -2,7 +2,7 @@
 
 <?php function renderPage() { ?>
 
-<h2>Create a new Habit</h2>
+<h2 class="form-title">Create a new Habit</h2>
 
 <form method="POST" action="database\habits.php">
     <input type="hidden" name="user_id" value="<?php echo $_SESSION['user']; ?>">
@@ -14,11 +14,12 @@
     <input class="text-input" type="text" id="habit_description" name="habit_description" required
         placeholder="buy: 1x tomato, 1x potato"><br><br>
     <label for="habit_reward">Habit Reward:</label>
-    <input class="text-input" type="number" id="habit_reward" name="habit_reward" required min="1" step="1"><br><br>
-    <input type="submit" class="neon-button" name="create_habit" value="Create Habit">
+    <input class="text-input" type="number" id="habit_reward" name="habit_reward" required min="1" step="1"
+        placeholder=2><br><br>
+    <input type="submit" class="neon-button" name="create_habit" value="Create">
 </form>
 <div style="text-align: center;">
-    <button class="neon-button" onclick="window.location.href = '/index.php';">Cancel</button>
+    <button class="neon-button-negativ" onclick="window.location.href = '/index.php';">Cancel</button>
 </div>
 
 <?php
