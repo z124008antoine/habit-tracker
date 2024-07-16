@@ -28,6 +28,7 @@
                 <button id="cancel-btn">Cancel</button>
                 <button id="save-btn">Save</button>
             </div>
+            <button class="profile-edit-button" onclick="window.location.href = '/logout.php';">Logout</button>
         </div>
         <div class="right-column">
             <!-- Content for the right column -->
