@@ -7,7 +7,6 @@
 
 <form method="POST" action="database/habits.php">
     <input type="hidden" name="user_id" value="<?php echo $_SESSION['user']; ?>">
-    <input type="hidden" name="private" value="<?php echo 0; ?>">
 
     <div style="text-align: center;">
         <?php $allhabits = get_all_habits($_SESSION['user']);

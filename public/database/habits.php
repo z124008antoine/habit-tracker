@@ -155,7 +155,7 @@
     #modify habit
     if (isset($_POST['modify_habits'])) {
         $user_id = $_POST['user_id'];
-        $habit_id = $_POST['habits'][0]; // only one habit can be modified at a time
+        $habit_id = $_POST['habit_id'];
         $habit_name = $_POST['habit_name'];
         $habit_description = $_POST['habit_description'];
         $habit_reward = $_POST['habit_reward'];
@@ -163,11 +163,11 @@
         // Update habit in the database
         $query = "UPDATE habits SET name = :habit_name, description = :habit_description, reward = :habit_reward WHERE id = :habit_id AND user_id = :user_id";
         $stmt = $conn->prepare($query);
+        $stmt->bindParam(':user_id', $user_id);
+        $stmt->bindParam(':habit_id', $habit_id);
         $stmt->bindParam(':habit_name', $habit_name);
         $stmt->bindParam(':habit_description', $habit_description);
         $stmt->bindParam(':habit_reward', $habit_reward);
-        $stmt->bindParam(':habit_id', $habit_id);
-        $stmt->bindParam(':user_id', $user_id);
     
         if ($stmt->execute()) {
             header("Location: /index.php");

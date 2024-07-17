@@ -4,15 +4,21 @@
 
 <h1>My habits</h1>
 
-<div class="create-habit">
-    <button class="neon-button" onclick="window.location.href = '/create_habit_form.php';"> + Create</button>
-</div>
-<div class="modify-habit">
-    <button class="neon-button" onclick="window.location.href = '/modify_habit_form.php';"> ~ Modify</button>
-</div>
-<div class="delete-habit">
-    <button class="neon-button-negativ" onclick="window.location.href = '/delete_habit_form.php';"> - Delete</button>
-</div>
+<li style="display: flex; flex-wrap: wrap;">
+    <div class="create-habit">
+        <button class="neon-button" style="margin:0.5em;" onclick="window.location.href = '/create_habit_form.php';"> +
+            Create</button>
+    </div>
+    <div class="modify-habit">
+        <button class="neon-button" style="margin:0.5em;" onclick="window.location.href = '/modify_habit_form.php';"> ~
+            Modify</button>
+    </div>
+    <div class="delete-habit">
+        <button class="neon-button-negativ" style="margin:0.5em;"
+            onclick="window.location.href = '/delete_habit_form.php';"> -
+            Delete</button>
+    </div>
+</li>
 
 <?php
     include __DIR__ . '/database/habits.php';
