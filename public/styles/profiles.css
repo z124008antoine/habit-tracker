@@ -12,3 +12,36 @@ a {
     border-radius: 50%;
     margin-right: 1rem;
 }
+
+
+.following-results{
+    align-items: center;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;    
+}
+
+.following{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color1: transparent;
+    background-image: url('/images/ui/box_blue.png');
+    background-size: 100% 100%;
+    aspect-ratio: 152/80;
+    height: 3em;
+    width: 5.7em;
+    color: white;
+    font-family: 'Pixeloid', sans-serif;
+    font-size: 1.5rem;
+    cursor: pointer;
+    --light-color: var(--color-1-bright);
+}
+.following .profile-pic{
+    margin: 0;
+}
+.neon-button:hover {
+    animation: light-up 1s forwards;
+}
+

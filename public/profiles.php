@@ -1,8 +1,31 @@
 <?php include __DIR__ . '/auth/guard.php'; ?>
+<?php include __DIR__ . '/database/users.php'; ?>
 
 <?php function renderPage() { ?>
 
 <div class="center">
+
+
+    <h1 class="form-title">Following</h1>
+
+    <ul class="following_results"
+        style="list-style:none; display:flex; flex-wrap:wrap; margin-left: 2em; margin-right: 2em;">
+        <?php
+        $followingUsers = get_following_users($_SESSION['user']);
+        foreach ($followingUsers as $user) {
+        ?>
+        <li class="following">
+            <a href="/profile_user_search.php?user_id=<?= $user['id'] ?>">
+                <img class="profile-pic" src="/images/avatars/avatar_<?= $user['profile_picture'] ?>.png"
+                    alt="<?= $user['username'] ?>">
+                <?= $user['username'] ?>
+            </a>
+        </li>
+        <?php
+        }
+        ?>
+    </ul>
+
     <h1 class="form-title">Search people</h1>
 
     <form method=" GET">
@@ -12,10 +35,9 @@
 
     <div class="results">
         <?php
-    include __DIR__ . '/database/users.php';
     $search = isset($_GET['search']) ? $_GET['search'] : '';
     if (!empty($search)) {
-        $users = search_users($search);
+        $users = search_users($search, $_SESSION['user']);
         foreach ($users as $user) {
             ?>
         <div class="result">

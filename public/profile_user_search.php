@@ -1,4 +1,5 @@
 <?php include __DIR__ . '/auth/guard.php'; ?>
+<?php include __DIR__ . '/database/users.php'; ?>
 
 <?php function renderPage() { ?>
 
@@ -17,13 +18,24 @@
                     src="images/avatars/avatar_<?php echo isset($user_data['profile_picture']) ? $user_data['profile_picture'] : 0 ?>.png">
             </div>
             <h2 class="username" id="username-display"><?php echo $user_data['username'] ?></h2>
-            <form id="edit-profile-form" action="update_profile.php" method="post">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" value="<?php echo $user_data['username']; ?>">
-                <label for="bio">Bio:</label>
-                <textarea class="large-text-input" id="bio" name="bio"><?php echo $user_data['bio']; ?></textarea>
-                <div id="bio-char-count">0 / 3000 characters</div>
+            <?php
+            // Check if the user follows the visited user profile
+            $follows = check_follow($_SESSION['user'], $user_id);
+            ?>
+
+            <?php if ($follows) { ?>
+            <form method="POST" action="database/users.php">
+                <input type="hidden" name="current_user" value="<?php echo $_SESSION['user']; ?>">
+                <input type="hidden" name="user_to_follow" value="<?php echo $user_id; ?>">
+                <input type="submit" class="unfollow-button" name="unfollow" value=" - Unfollow">
             </form>
+            <?php } else { ?>
+            <form method="POST" action="database/users.php">
+                <input type="hidden" name="current_user" value="<?php echo $_SESSION['user']; ?>">
+                <input type="hidden" name="user_to_follow" value="<?php echo $user_id; ?>">
+                <input type="submit" class="follow-button" name="follow" value=" + Follow">
+            </form>
+            <?php } ?>
         </div>
         <div class="right-column">
             <!-- Content for the right column -->
