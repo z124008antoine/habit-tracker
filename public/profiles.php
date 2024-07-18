@@ -8,8 +8,7 @@
 
     <h1 class="form-title">Following</h1>
 
-    <ul class="following_results"
-        style="list-style:none; display:flex; flex-wrap:wrap; margin-left: 2em; margin-right: 2em;">
+    <ul class="following-results">
         <?php
         $followingUsers = get_following_users($_SESSION['user']);
         foreach ($followingUsers as $user) {
@@ -18,6 +17,7 @@
             <a href="/profile_user_search.php?user_id=<?= $user['id'] ?>">
                 <img class="profile-pic" src="/images/avatars/avatar_<?= $user['profile_picture'] ?>.png"
                     alt="<?= $user['username'] ?>">
+                <br>
                 <?= $user['username'] ?>
             </a>
         </li>
@@ -25,6 +25,8 @@
         }
         ?>
     </ul>
+
+    <div class="divider"></div>
 
     <h1 class="form-title">Search people</h1>
 

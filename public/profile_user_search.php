@@ -55,7 +55,7 @@
                     <span class="year-day-title">S</span>
                     <span class="year-day-title">S</span>
                     <?php
-                    $yearHabits = get_year_habits($_SESSION['user']);
+                    $yearHabits = get_year_habits($user_id);
                     $maxCompleted = 0;
                     foreach ($yearHabits as $nbCompleted) {
                         if ($nbCompleted > $maxCompleted) {
