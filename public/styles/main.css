@@ -56,7 +56,16 @@ h2.form-title{
     align-items: center;
     background-image: url('/images/ui/form_title.png');
     background-repeat: no-repeat;
-    /* background-size: contain; */
+    background-position: bottom;
+}
+h1.form-title{
+    margin: 2em 0 2em 0;
+    padding: 1em 0 1em 0;
+    text-align: center;
+    align-items: center;
+    background-image: url('/images/ui/form_title_2.png');
+    background-size: 8em 3em;
+    background-repeat: no-repeat;
     background-position: bottom;
 }
 
@@ -82,6 +91,9 @@ h2.form-title{
     filter: grayscale(1);
     cursor: not-allowed;
     animation: none;
+}
+.center{
+    text-align: center;
 }
 
 /* Negative button variant (for cancel or similar)*/
@@ -266,6 +278,18 @@ nav li:nth-child(3) .page-link:hover {
     .hamburger {
         display: flex;
     }
+}
+
+/*Divider*/
+.divider {
+    margin: 2em auto;
+    width: 80%;
+    height: 1em;
+    background-color: transparent;
+    background-image: url('/images/ui/dashed_line_pink.png');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* Footer */

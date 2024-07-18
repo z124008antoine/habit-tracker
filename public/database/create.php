@@ -21,6 +21,15 @@
         UNIQUE (email)
     )";
 
+    $followings = "CREATE TABLE user_follows (
+        id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        follower_id INT(6) UNSIGNED NOT NULL,
+        followed_id INT(6) UNSIGNED NOT NULL,
+        FOREIGN KEY (follower_id) REFERENCES users(id) ON DELETE CASCADE,
+        FOREIGN KEY (followed_id) REFERENCES users(id) ON DELETE CASCADE,
+        UNIQUE (follower_id, followed_id)
+    )";
+
     $habits = "CREATE TABLE habits (
         id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         user_id INT(6) UNSIGNED NOT NULL,
@@ -41,6 +50,7 @@
     )";
 
     $conn->query($users);
+    $conn->query($followings);
     $conn->query($habits);
     $conn->query($realizations);
 

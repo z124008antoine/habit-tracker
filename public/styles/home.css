@@ -17,3 +17,13 @@ h1 {
     padding-left: 2rem;
     padding-bottom: 3rem;
 }
+
+.edit-habits{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.edit-habits button{
+    margin:0.5em
+}

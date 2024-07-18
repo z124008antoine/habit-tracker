@@ -8,7 +8,7 @@
 <form method="POST" action="database/habits.php">
     <input type="hidden" name="user_id" value="<?php echo $_SESSION['user']; ?>">
 
-    <div style="text-align: center;">
+    <div class="center">
         <?php $allhabits = get_all_habits($_SESSION['user']);
     foreach ($allhabits as $habit) { ?>
         <label for="habit_<?php echo $habit['id']; ?>">
@@ -31,7 +31,7 @@
         placeholder=2><br><br>
     <input type="submit" class="neon-button" name="modify_habits" value="Modify">
 </form>
-<div style="text-align: center;">
+<div class="center">
     <button class="neon-button-negativ" onclick="window.location.href = '/index.php';">Cancel</button>
 </div>
 
