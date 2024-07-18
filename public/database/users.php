@@ -47,7 +47,7 @@
         $count = $stmt->fetchColumn();
 
         if ($count > 0) {
-            header("Location: /profile_user_search.php?user_id=$user_to_follow ");
+            header("Location: /profile.php?user_id=$user_to_follow ");
             echo "You are already following this user.";
             exit();
         } else {
@@ -58,7 +58,7 @@
             $stmt->bindParam(':user_to_follow', $user_to_follow);
 
             if ($stmt->execute()) {
-                header("Location: /profile_user_search.php?user_id=$user_to_follow ");
+                header("Location: /profile.php?user_id=$user_to_follow ");
                 echo "You are now following this user.";
                 exit();
             } else {
@@ -80,7 +80,7 @@
         $count = $stmt->fetchColumn();
 
         if ($count < 1) {
-            header("Location: /profile_user_search.php?user_id=$user_to_follow ");
+            header("Location: /profile.php?user_id=$user_to_follow ");
             echo "You are not even following this user.";
             exit();
         } else {
@@ -90,7 +90,7 @@
             $stmt->bindParam(':user_to_follow', $user_to_follow);
 
             if ($stmt->execute()) {
-                header("Location: /profile_user_search.php?user_id=$user_to_follow ");
+                header("Location: /profile.php?user_id=$user_to_follow ");
                 echo "You are now unfollowing this user.";
                 exit();
             } else {

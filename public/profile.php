@@ -17,8 +17,12 @@
             </div>
             <h2 class="username" id="username-display"><?php echo $user_data['username'] ?></h2>
             <?php
+            include __DIR__ . '/database/users.php';
+            // Check if the user follows the visited user profile
+            $follows = check_follow($_SESSION['user'], $user_id);
+            
             include __DIR__ . '/components/progress_bar.php';
-            renderBar(90, 100, "profile-xp");
+            renderBar($user_data['xp'], 100 + $user_data['level'] * 20, "profile-xp");
             ?>
             <form id="edit-profile-form" action="update_profile.php" method="post">
                 <label for="username">Username:</label>
@@ -28,12 +32,24 @@
                 <div id="bio-char-count">0 / 3000 characters</div>
             </form>
             <?php if ($_SESSION['user'] == $user_id) { ?>
-            <button class="profile-edit-button" id="edit-profile-button">Edit Profile</button>
-            <div id="edit-profile-form-buttons">
-                <button id="cancel-btn">Cancel</button>
-                <button id="save-btn">Save</button>
-            </div>
-            <button class="profile-edit-button" onclick="window.location.href = '/logout.php';">Logout</button>
+                <button class="profile-edit-button" id="edit-profile-button">Edit Profile</button>
+                <div id="edit-profile-form-buttons">
+                    <button id="cancel-btn">Cancel</button>
+                    <button id="save-btn">Save</button>
+                </div>
+                <button class="profile-edit-button" onclick="window.location.href = '/logout.php';">Logout</button>
+            <?php } else if ($follows) { ?>
+            <form method="POST" action="database/users.php">
+                <input type="hidden" name="current_user" value="<?php echo $_SESSION['user']; ?>">
+                <input type="hidden" name="user_to_follow" value="<?php echo $user_id; ?>">
+                <input type="submit" class="unfollow-button" name="unfollow" value=" - Unfollow">
+            </form>
+            <?php } else { ?>
+            <form method="POST" action="database/users.php">
+                <input type="hidden" name="current_user" value="<?php echo $_SESSION['user']; ?>">
+                <input type="hidden" name="user_to_follow" value="<?php echo $user_id; ?>">
+                <input type="submit" class="follow-button" name="follow" value=" + Follow">
+            </form>
             <?php } ?>
         </div>
         <div class="right-column">
@@ -55,7 +71,7 @@
                     <span class="year-day-title">S</span>
                     <span class="year-day-title">S</span>
                     <?php
-                    $yearHabits = get_year_habits($_SESSION['user']);
+                    $yearHabits = get_year_habits($user_id);
                     $maxCompleted = 0;
                     foreach ($yearHabits as $nbCompleted) {
                         if ($nbCompleted > $maxCompleted) {

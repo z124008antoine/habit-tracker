@@ -14,7 +14,7 @@
         foreach ($followingUsers as $user) {
         ?>
         <li class="following">
-            <a href="/profile_user_search.php?user_id=<?= $user['id'] ?>">
+            <a href="/profile.php?user_id=<?= $user['id'] ?>">
                 <img class="profile-pic" src="/images/avatars/avatar_<?= $user['profile_picture'] ?>.png"
                     alt="<?= $user['username'] ?>">
                 <br>
