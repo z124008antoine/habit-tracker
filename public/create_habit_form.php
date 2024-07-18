@@ -18,7 +18,7 @@
         placeholder=2><br><br>
     <input type="submit" class="neon-button" name="create_habit" value="Create">
 </form>
-<div style="text-align: center;">
+<div class="center">
     <button class="neon-button-negativ" onclick="window.location.href = '/index.php';">Cancel</button>
 </div>
 

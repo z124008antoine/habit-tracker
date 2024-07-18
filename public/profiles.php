@@ -2,33 +2,35 @@
 
 <?php function renderPage() { ?>
 
-<h1>Search people</h1>
-<form method="GET">
-    <input type="text" class="text-input" name="search" placeholder="Search">
-    <button class="neon-button" type="submit">Search</button>
-</form>
+<div class="center">
+    <h1 class="form-title">Search people</h1>
 
-<div class="results">
-    <?php
+    <form method=" GET">
+        <input type="text" class="text-input" name="search" placeholder="Search">
+        <button class="neon-button" type="submit">Search</button>
+    </form>
+
+    <div class="results">
+        <?php
     include __DIR__ . '/database/users.php';
     $search = isset($_GET['search']) ? $_GET['search'] : '';
     if (!empty($search)) {
         $users = search_users($search);
         foreach ($users as $user) {
             ?>
-    <div class="result">
-        <a href="/profile_user_search.php?user_id=<?= $user['id'] ?>">
-            <img class="profile-pic" src="/images/avatars/avatar_<?= $user['profile_picture'] ?>.png"
-                alt="<?= $user['username'] ?>">
-            <?= $user['username'] ?>
-        </a>
-    </div>
-    <?php
+        <div class="result">
+            <a href="/profile_user_search.php?user_id=<?= $user['id'] ?>">
+                <img class="profile-pic" src="/images/avatars/avatar_<?= $user['profile_picture'] ?>.png"
+                    alt="<?= $user['username'] ?>">
+                <?= $user['username'] ?>
+            </a>
+        </div>
+        <?php
         }
     }
     ?>
+    </div>
 </div>
-
 <?php
 }
 
