@@ -3,8 +3,9 @@
 <?php function renderPage() { ?>
 
 <!-- Retrieve user data from database -->
-<?php include __DIR__ . '/database/user.php'; 
-    $user_data = get_user_data($_SESSION['user']);
+<?php include __DIR__ . '/database/user.php';
+    $user_id = $_GET['user_id'] ?? $_SESSION['user'];
+    $user_data = get_user_data($user_id);
 ?>
 
 <section>
@@ -15,6 +16,10 @@
                 <img alt="profile picture" src="images/avatars/avatar_<?php echo isset($user_data['profile_picture']) ? $user_data['profile_picture'] : 0 ?>.png">
             </div>
             <h2 class="username" id="username-display"><?php echo $user_data['username'] ?></h2>
+            <?php
+            include __DIR__ . '/components/progress_bar.php';
+            renderBar(90, 100, "profile-xp");
+            ?>
             <form id="edit-profile-form" action="update_profile.php" method="post">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" value="<?php echo $user_data['username']; ?>">
@@ -22,13 +27,14 @@
                 <textarea class="large-text-input" id="bio" name="bio"><?php echo $user_data['bio']; ?></textarea>
                 <div id="bio-char-count">0 / 3000 characters</div>
             </form>
-             
+            <?php if ($_SESSION['user'] == $user_id) { ?>
             <button class="profile-edit-button" id="edit-profile-button">Edit Profile</button>
             <div id="edit-profile-form-buttons">
                 <button id="cancel-btn">Cancel</button>
                 <button id="save-btn">Save</button>
             </div>
             <button class="profile-edit-button" onclick="window.location.href = '/logout.php';">Logout</button>
+            <?php } ?>
         </div>
         <div class="right-column">
             <!-- Content for the right column -->
@@ -79,6 +85,8 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const editProfileButton = document.getElementById('edit-profile-button');
+        if (!editProfileButton)
+            return; // skip if the button is not found (aka not on the user's own profile)
         const usernameDisplay = document.getElementById('username-display');
         const bioDisplay = document.getElementById('bio-display');
         const editForm = document.getElementById('edit-profile-form');

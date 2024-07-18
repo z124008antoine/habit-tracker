@@ -13,3 +13,35 @@
     width: 100%;
     transition: background-color 1ms ease-in-out;
 }
+
+/* Progress Bar */
+.progress-bar {
+    position: relative;
+    width: 100%;
+    max-width: 322px;
+    height: 5rem;
+}
+
+.progress-bar img {
+    top: 0;
+    left: 0;
+    object-fit: contain;
+    max-width: 100%;
+    height: auto;
+}
+
+.progress-bar-mask {
+    position: absolute;
+    top: 0;
+    right: 0;
+    backdrop-filter: grayscale(100%);
+    transform: skew(45deg);
+    transform-origin: 0 0;
+    height: 4rem;
+}
+
+.progress-bar-text {
+    text-align: center;
+    margin: auto;
+    font-size: 1.2rem;
+}

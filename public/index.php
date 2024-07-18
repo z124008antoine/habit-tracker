@@ -36,7 +36,15 @@
         DONE
     </button>
 </div>
+
 <?php } ?>
+<div class="xp-bar">
+    <?php
+        include_once __DIR__ . '/components/progress_bar.php';
+        renderBar(50, 100, "habit-xp");
+    ?>
+    <script src="/scripts/progress_bar.js"></script>
+</div>
 
 <script>
 function start_party(el) {
@@ -52,6 +60,7 @@ function start_party(el) {
 
 function completeHabit(el, id) {
     el.disabled = true;
+
     fetch('/database/habits.php?complete=1&habit_id=' + id, {
             method: 'GET',
             headers: {

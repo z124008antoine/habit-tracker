@@ -6,7 +6,8 @@
     <title><?php echo $documentTitle ?></title>
     <link rel="stylesheet" href="styles/components.css">
     <link rel="stylesheet" href="styles/main.css">
-    <script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js" async></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" async></script>
     <?php echo $includeHead ?? '' ?>
 </head>
 
