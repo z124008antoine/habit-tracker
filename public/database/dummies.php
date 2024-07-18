@@ -6,6 +6,8 @@
         'email' => 'john@gmail.com',
         'profile_picture' => 0,
         'bio' => 'Hello, I am John. I like to exercise and read.',
+        'level' => 2,
+        'xp' => 100,
     ];
     $dummy_users[] = [
         'username' => 'Jane',
@@ -13,6 +15,8 @@
         'email' => 'jane@gmail.com',
         'profile_picture' => 1,
         'bio' => 'Hello, I am Jane. I like to meditate and write.',
+        'level' => 1,
+        'xp' => 50,
     ];
     $dummy_users[] = [
         'username'=> 'Jack',
@@ -20,6 +24,8 @@
         'email'=> 'jack@gmail.com',
         'profile_picture'=> 2,
         'bio'=> 'Hello, I am Jack. I like to code and cook.',
+        'level'=> 3,
+        'xp'=> 75,
     ];
 
     $dummy_habits = [];

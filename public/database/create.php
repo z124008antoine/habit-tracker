@@ -17,6 +17,8 @@
         profile_picture INT(6) DEFAULT 0,
         password VARCHAR(255) NOT NULL,
         bio VARCHAR(3000) NULL,
+        level INT(6) DEFAULT 1,
+        xp INT(6) DEFAULT 0,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         UNIQUE (email)
     )";
@@ -58,8 +60,8 @@
     
     foreach ($dummy_users as $user) {
         $hashed = password_hash($user['password'], PASSWORD_DEFAULT);
-        $conn->query("INSERT INTO users (username, email, password, profile_picture, bio)
-            VALUES ('{$user['username']}', '{$user['email']}', '{$hashed}', '{$user['profile_picture']}', '{$user['bio']}')");
+        $conn->query("INSERT INTO users (username, email, password, profile_picture, bio, level, xp)
+            VALUES ('{$user['username']}', '{$user['email']}', '{$hashed}', '{$user['profile_picture']}', '{$user['bio']}', '{$user['level']}', '{$user['xp']}')");
     }
 
     foreach ($dummy_habits as $habit) {

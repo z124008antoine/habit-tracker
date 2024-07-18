@@ -16,6 +16,12 @@
         echo "Error removing habits table<br>";
     }
     try {
+        $conn->query("DROP TABLE user_follows");
+    }
+    catch (Exception $e) {
+        echo "Error removing user_follows table<br>";
+    }
+    try {
         $conn->query("DROP TABLE users");
     }
     catch (Exception $e) {

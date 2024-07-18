@@ -15,13 +15,13 @@ function animateProgressBar(id, intermediates, final, callback) {
 
     el.num = start_val;
     el.max_num = start_max;
-    // fill up to 100%
+    // fill up to 100% if needed
     tl.fromTo(el, {
         num: start_val,
         max_num: start_max
     }, {
-        num: start_max,
-        duration: 2,
+        num: intermediates.length === 0 ? final : start_max,
+        duration: 1,
         onUpdate: updateFunc,
         onComplete: () => {
             callback && callback(0);
@@ -39,7 +39,7 @@ function animateProgressBar(id, intermediates, final, callback) {
             num: 0
         }, {
             num: i === intermediates.length - 1 ? final : intermediates[i],
-            duration: 2,
+            duration: 1,
             onUpdate: updateFunc,
             onComplete: () => {
                 if (i + 1 < intermediates.length)

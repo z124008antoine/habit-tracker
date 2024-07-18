@@ -21,7 +21,9 @@
 
 <?php
     include __DIR__ . '/database/habits.php';
+    include __DIR__ . '/database/user.php';
     $habits = get_todays_habits($_SESSION['user']);
+    $user_data = get_user_data($_SESSION['user']);
     foreach ($habits as $key => $value) {
 ?>
 <div class="habit<?= $value["completed"] ? " completed" : "" ?>">
@@ -40,7 +42,7 @@
 <div class="xp-bar">
     <?php
         include_once __DIR__ . '/components/progress_bar.php';
-        renderBar(50, 100, "habit-xp");
+        renderBar($user_data['xp'], 100 + $user_data['level'] * 20, "habit-xp");
     ?>
     <script src="/scripts/progress_bar.js"></script>
 </div>
@@ -59,7 +61,6 @@ function start_party(el) {
 
 function completeHabit(el, id) {
     el.disabled = true;
-
     fetch('/database/habits.php?complete=1&habit_id=' + id, {
             method: 'GET',
             headers: {
@@ -71,6 +72,10 @@ function completeHabit(el, id) {
             if (data.success) {
                 start_party(el);
                 el.classList.add('completed');
+                // hack
+                const xp = Number(el.parentElement.querySelector('.reward').innerText.replace('xp', '').trim());
+                const currentXp = Number(document.querySelector('#habit-xp .progress-bar-text').innerText.split('/')[0].trim());
+                animateProgressBar("habit-xp", [], currentXp + xp, console.log);
             } else {
                 el.disabled = false;
             }
