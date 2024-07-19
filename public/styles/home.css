@@ -4,13 +4,16 @@ h1 {
 }
 
 .habit {
-    margin: 5rem 0;
+    margin: 3rem 0;
     display: grid;
     grid-template-columns: 50% 5% auto;
     align-items: center;
     background-image: url('/images/ui/line-pink-big.png');
     background-repeat: no-repeat;
-    background-position: bottom left;
+    background-position: center;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .habit-title {
@@ -22,6 +25,9 @@ h1 {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .edit-habits button{

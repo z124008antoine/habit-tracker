@@ -14,11 +14,11 @@
     <input class="text-input" type="text" id="habit_description" name="habit_description" required
         placeholder="buy: 1x tomato, 1x potato"><br><br>
     <label for="habit_reward">Habit Reward:</label>
-    <input class="text-input" type="number" id="habit_reward" name="habit_reward" required min="1" step="1"
-        placeholder=2><br><br>
+    <input class="text-input" type="number" id="habit_reward" name="habit_reward" required min="1" max="30" step="1"
+        placeholder="2"><br><br>
     <input type="submit" class="neon-button" name="create_habit" value="Create">
 </form>
-<div class="center">
+<div class="center-text">
     <button class="neon-button-negativ" onclick="window.location.href = '/index.php';">Cancel</button>
 </div>
 

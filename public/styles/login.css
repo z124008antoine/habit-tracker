@@ -18,3 +18,16 @@ label {
 .neon-button {
     margin-left: auto;
 }
+.login-register-ul{
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+.login-register-ul a{
+    text-decoration: none;
+    align-self: center;
+    line-height: 3em;
+}

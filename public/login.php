@@ -31,11 +31,13 @@
     <input class="text-input" type="email" name="mail" id="mail" required>
     <label for="password">Password</label>
     <input class="text-input" type="password" name="password" id="password" required>
-    <button type="submit" class="neon-button">Login</button>
-    <?php if (isset($error)) { ?>
-    <p><?= $error ?></p>
-    <?php } ?>
-    <a class="neon-link" href="/registration_form.php">Register</a>
+    <ul class="login-register-ul">
+        <button type="submit" class="neon-button">Login</button>
+        <?php if (isset($error)) { ?>
+        <p><?= $error ?></p>
+        <?php } ?>
+        <a class="neon-button" href="/registration_form.php">Register</a>
+    </ul>
 </form>
 <?php
 }

@@ -2,7 +2,7 @@
 
 <?php function renderPage() { ?>
 
-<h1>My habits</h1>
+<h1 class="form-title">My habits</h1>
 
 <li class="edit-habits">
     <div class="create-habit">
@@ -31,11 +31,13 @@
         <h2><?= $value["name"] ?></h2>
         <p><?= $value["description"] ?></p>
     </div>
-    <p class="reward"><?= $value["reward"] ?>xp</p>
+
     <button class="neon-button" <?= $value["completed"] ? "disabled" : "" ?>
         onclick="completeHabit(this, <?= $value["id"] ?>)">
         DONE
     </button>
+    <br>
+    <p class="reward"><?= $value["reward"] ?>xp</p>
 </div>
 
 <?php } ?>
@@ -74,7 +76,8 @@ function completeHabit(el, id) {
                 el.classList.add('completed');
                 // hack
                 const xp = Number(el.parentElement.querySelector('.reward').innerText.replace('xp', '').trim());
-                const currentXp = Number(document.querySelector('#habit-xp .progress-bar-text').innerText.split('/')[0].trim());
+                const currentXp = Number(document.querySelector('#habit-xp .progress-bar-text').innerText.split(
+                    '/')[0].trim());
                 animateProgressBar("habit-xp", [], currentXp + xp, console.log);
             } else {
                 el.disabled = false;

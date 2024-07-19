@@ -92,7 +92,19 @@ h1.form-title{
     cursor: not-allowed;
     animation: none;
 }
-.center{
+.center {
+    text-align: center;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Add this line */
+}
+
+.center li {
+    margin: 1em 1em;
+    /* flex-basis: 50%;  */
+}
+.center-text{
     text-align: center;
 }
 

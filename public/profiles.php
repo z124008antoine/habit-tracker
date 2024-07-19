@@ -3,7 +3,7 @@
 
 <?php function renderPage() { ?>
 
-<div class="center">
+<div class="center-text">
 
 
     <h1 class="form-title">Following</h1>
@@ -42,14 +42,14 @@
         $users = search_users($search, $_SESSION['user']);
         foreach ($users as $user) {
             ?>
-    <div class="result">
-        <a href="/profile.php?user_id=<?= $user['id'] ?>">
-            <img class="profile-pic" src="/images/avatars/avatar_<?= $user['profile_picture'] ?>.png"
-                alt="<?= $user['username'] ?>">
-            <?= $user['username'] ?>
-        </a>
-    </div>
-    <?php
+        <div class="result">
+            <a href="/profile.php?user_id=<?= $user['id'] ?>">
+                <img class="profile-pic" src="/images/avatars/avatar_<?= $user['profile_picture'] ?>.png"
+                    alt="<?= $user['username'] ?>">
+                <?= $user['username'] ?>
+            </a>
+        </div>
+        <?php
         }
     }
     ?>

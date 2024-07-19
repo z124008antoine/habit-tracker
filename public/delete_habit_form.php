@@ -9,22 +9,22 @@
 
     <input type="hidden" name="user_id" value="<?php echo $_SESSION['user']; ?>">
 
-    <div class="center">
+    <ul class="center">
         <?php $allhabits = get_all_habits($_SESSION['user']);
         foreach ($allhabits as $habit) { ?>
-        <label for="habit_<?php echo $habit['id']; ?>">
-            <input type="checkbox" id="habit_<?php echo $habit['id']; ?>" name="habits[]"
-                value="<?php echo $habit['id']; ?>">
-            <?php echo $habit['name']; ?>
-        </label><br>
+        <li><label for="habit_<?php echo $habit['id']; ?>">
+                <input type="checkbox" id="habit_<?php echo $habit['id']; ?>" name="habits[]"
+                    value="<?php echo $habit['id']; ?>">
+                <?php echo $habit['name']; ?>
+            </label></li>
         <?php } ?>
-    </div>
+    </ul>
 
     <br>
     <input type="submit" class="neon-button" name="delete_habits" value="Delete">
 </form>
 
-<div class="center">
+<div class="center-text">
     <button class="neon-button-negativ" onclick="window.location.href = '/index.php';">Cancel</button>
 </div>
 
