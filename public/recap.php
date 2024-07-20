@@ -60,6 +60,16 @@
         }
         ?>
     </div>
+    <div class="year-day-legend">
+        <p>less</p>
+        <div class="year-day" style="align-items:center;filter:grayscale(1);"></div>
+        <div class="year-day" style="align-items:center;filter:grayscale(.75);"></div>
+        <div class="year-day" style="align-items:center;filter:grayscale(.5);"></div>
+        <div class="year-day" style="align-items:center;filter:grayscale(.25);"></div>
+        <div class="year-day" style="align-items:center;filter:grayscale(0);"></div>
+        <div class="year-day all-completed" style="align-items:center;filter:grayscale(0);"></div>
+        <p>more</p>
+    </div>
 </section>
 
 <?php

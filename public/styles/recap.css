@@ -68,3 +68,12 @@ h1 {
     text-align: center;
     font-size: 0.8rem;
 }
+
+.year-day-legend
+{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 0.5rem;
+    margin-top: 15px;
+}
