@@ -128,7 +128,7 @@
         bioTextarea.addEventListener('input', updateCharacterCount);
 
         editProfileButton.addEventListener('click', () => {
-            usernameDisplay.style.display = 'none';
+            //usernameDisplay.style.display = 'none';
             editForm.style.display = 'flex';
             editProfileButton.style.display = 'none';
             formButtons.style.display = 'flex';
@@ -136,7 +136,7 @@
         });
 
         cancelButton.addEventListener('click', () => {
-            usernameDisplay.style.display = 'block';
+            //usernameDisplay.style.display = 'block';
             editForm.style.display = 'none';
             editProfileButton.style.display = 'block';
             formButtons.style.display = 'none';
