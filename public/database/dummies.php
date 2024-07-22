@@ -7,7 +7,7 @@
         'profile_picture' => 0,
         'bio' => 'Hello, I am John. I like to exercise and read.',
         'level' => 2,
-        'xp' => 100,
+        'xp' => 113,
     ];
     $dummy_users[] = [
         'username' => 'Jane',
@@ -33,31 +33,31 @@
         'user_id' => 1,
         'name' => 'Exercise',
         'description' => 'Go for a run',
-        'reward' => 5,
+        'reward' => 30,
     ];
     $dummy_habits[] = [
         'user_id' => 1,
         'name' => 'Read',
         'description' => 'Read a book',
-        'reward' => 3,
+        'reward' => 20,
     ];
     $dummy_habits[] = [
         'user_id' => 1,
         'name' => 'Drink water',
         'description' => 'Drink 8 glasses of water',
-        'reward' => 2,
+        'reward' => 10,
     ];
     $dummy_habits[] = [
         'user_id' => 1,
         'name' => 'Walk',
         'description' => 'Go for a walk',
-        'reward' => 3,
+        'reward' => 25,
     ];
     $dummy_habits[] = [
         'user_id' => 1,
         'name' => 'Cook',
         'description' => 'Cook a homemade meal',
-        'reward' => 2,
+        'reward' => 22,
     ];
     $dummy_habits[] = [
         'user_id' => 2,

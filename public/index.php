@@ -20,8 +20,8 @@
 </li>
 
 <?php
-    include __DIR__ . '/database/habits.php';
-    include __DIR__ . '/database/user.php';
+    include_once __DIR__ . '/database/habits.php';
+    include_once __DIR__ . '/database/user.php';
     $habits = get_todays_habits($_SESSION['user']);
     $user_data = get_user_data($_SESSION['user']);
     foreach ($habits as $key => $value) {
@@ -44,7 +44,7 @@
 <div class="xp-bar">
     <?php
         include_once __DIR__ . '/components/progress_bar.php';
-        renderBar($user_data['xp'], 100 + $user_data['level'] * 20, "habit-xp");
+        renderBar($user_data['xp'], 100 + $user_data['level'] * 20, "habit-xp", $user_data['level']);
     ?>
     <script src="/scripts/progress_bar.js"></script>
 </div>
@@ -61,6 +61,20 @@ function start_party(el) {
     });
 }
 
+// debounce
+let timeout;
+function debounce(func, wait) {
+    if (timeout) {
+        clearTimeout(timeout);
+    }
+    timeout = setTimeout(func, wait);
+}
+
+const closeXpBar = () => {
+    const xpBar = document.querySelector('.xp-bar');
+    xpBar.style.transform = '';
+}
+
 function completeHabit(el, id) {
     el.disabled = true;
     fetch('/database/habits.php?complete=1&habit_id=' + id, {
@@ -71,14 +85,21 @@ function completeHabit(el, id) {
         })
         .then(response => response.json())
         .then(data => {
-            if (data.success) {
+            if (data.final) {
                 start_party(el);
                 el.classList.add('completed');
-                // hack
-                const xp = Number(el.parentElement.querySelector('.reward').innerText.replace('xp', '').trim());
-                const currentXp = Number(document.querySelector('#habit-xp .progress-bar-text').innerText.split(
-                    '/')[0].trim());
-                animateProgressBar("habit-xp", [], currentXp + xp, console.log);
+                const levelText = document.querySelector('#habit-xp .progress-bar-level');
+                const startLevel = parseInt(levelText.innerText.split(' ').pop());
+
+                const callback = (n) => {
+                    levelText.innerText = `Level ${startLevel + n}`;
+                }
+                const xpBar = document.querySelector('.xp-bar');
+                xpBar.style.transform = 'none';
+                debounce(closeXpBar, 5000);
+                setTimeout(() => {
+                    animateProgressBar("habit-xp", data.progress, data.final, callback);
+                }, 500);
             } else {
                 el.disabled = false;
             }

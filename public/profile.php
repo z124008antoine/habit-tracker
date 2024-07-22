@@ -25,7 +25,7 @@
             $follows = check_follow($_SESSION['user'], $user_id);
             
             include __DIR__ . '/components/progress_bar.php';
-            renderBar($user_data['xp'], 100 + $user_data['level'] * 20, "profile-xp");
+            renderBar($user_data['xp'], 100 + $user_data['level'] * 20, "profile-xp", $user_data['level']);
             ?>
             <form id="edit-profile-form" action="update_profile.php" method="post">
                 <label for="username">Username:</label>

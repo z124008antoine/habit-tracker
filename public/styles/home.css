@@ -36,10 +36,17 @@ h1 {
     position: fixed;
     bottom: 0;
     right: 0;
+    padding: 1rem;
+    background-color: var(--bg-color);
+    --border-props: 0.2rem solid var(--color-1-bright);
+    border-left: var(--border-props);
+    border-top: var(--border-props);
+    box-shadow: 0 0 .5rem var(--color-1);
+    transform: translate(100%, 100%);
+    transition: transform 0.5s;
 }
 
 @media screen and (max-width: 740px) {
-
     .habit .neon-button {
         font-size: 1.4rem;
     }

@@ -15,11 +15,14 @@
 }
 
 /* Progress Bar */
+@keyframes progress {
+    from { width: 100%; }
+}
 .progress-bar {
     position: relative;
     width: 100%;
     max-width: 322px;
-    height: 5rem;
+    height: 6rem;
 }
 
 .progress-bar img {
@@ -30,14 +33,20 @@
     height: auto;
 }
 
+.progress-bar-level {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
 .progress-bar-mask {
     position: absolute;
-    top: 0;
+    top: 1.5rem;
     right: 0;
     backdrop-filter: grayscale(100%);
     transform: skew(45deg);
     transform-origin: 0 0;
     height: 4rem;
+    animation: 1s progress;
 }
 
 .progress-bar-text {

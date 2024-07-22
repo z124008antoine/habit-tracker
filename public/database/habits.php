@@ -1,5 +1,6 @@
 <?php
     include_once __DIR__ . '/db.php';
+    include_once __DIR__ . '/user.php';
 
     function get_todays_habits($user_id) {
         global $conn;
@@ -34,8 +35,11 @@
 
         $sql = "INSERT INTO realizations (habit_id, date)
             VALUES ((SELECT id FROM habits WHERE id = $habit_id AND user_id = $user_id), CURDATE())"; // make sure the habit belongs to the user
-        $conn->query($sql);
-        echo json_encode(['success' => true]);
+        $conn->beginTransaction();
+        $conn->exec($sql);
+        $xp_res = add_user_xp($user_id, "(SELECT reward FROM habits WHERE id = $habit_id)");
+        $conn->commit();
+        echo json_encode($xp_res);
         exit();
     }
 

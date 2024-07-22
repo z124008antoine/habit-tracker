@@ -1,6 +1,6 @@
 // Use this script to animate progress bars from /components/progress_bar.php
 // prototype: (string, number[][])
-// ex; animateProgressBar('progress-bar-1', [120, 140]); to animate progress bar to 100/100 -> 120/120 -> 80/140
+// ex; animateProgressBar('progress-bar-1', 80, [120, 140]); to animate progress bar to 100/100 -> 120/120 -> 80/140
 function animateProgressBar(id, intermediates, final, callback) {
     const tl = gsap.timeline();
     const el = document.getElementById(id);
