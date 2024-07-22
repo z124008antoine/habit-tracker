@@ -1,14 +1,83 @@
-section {
-    margin: 5rem 0;
+.container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
 }
 
-h1 {
-    margin: 1rem 0;
-    background-image: url('/images/ui/line-pink.png');
-    background-repeat: no-repeat;
-    padding-bottom: 0.3em;
-    padding-top: 1em;
-    padding-left: 0.8em;
-    margin-left: -1rem;
+.avatar-container {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+    margin-bottom: 20px; /* You might need to adjust this to accommodate the overlapping text */
+    position: relative; /* This is necessary for absolute positioning of children */
+    text-align: center;
 }
 
+.avatar-container img {
+    width: 300px; /* Adjust based on your preference */
+    height: 300px; /* Make sure width and height are equal */
+    border-radius: 50%; /* This creates the circular shape */
+    object-fit: cover; /* Ensures the image covers the area without stretching */
+}
+
+.avatar-categories-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.category-btn {
+    border: 2px solid white; /* Adds a white border */
+    background-color: white; /* Sets the background color to white */
+    padding: 10px; /* Adds some padding around the image */
+    cursor: pointer; /* Changes the cursor to indicate it's clickable */
+    border-radius: 15%; /* Makes the button rounded */
+    display: inline-flex; /* Uses flexbox to center the image inside the button */
+    justify-content: center; /* Centers the content horizontally */
+    align-items: center; /* Centers the content vertically */
+    width: 50px; /* Sets a fixed width */
+    height: 50px; /* Sets a fixed height to make it a circle */
+    overflow: hidden; /* Ensures nothing spills outside the rounded borders */
+}
+
+.category-btn:hover, .category-btn.selected {
+    background-color: #cccccc; /* Or any other style you apply on hover */
+}
+
+.category-btn img {
+    width: auto; /* Adjusts the width automatically */
+    height: 30px; /* Sets a fixed height for the image */
+    display: block; /* Ensures the image is properly displayed */
+}
+
+.options-container {
+    display: flex; /* Changed from grid to flex */
+    flex-direction: row; /* Ensures items are laid out horizontally */
+    gap: 10px; /* Adds space between items */
+    justify-content: center; /* Centers items horizontally */
+    flex-wrap: wrap; /* Allows items to wrap to the next line if not enough space */
+    padding: 20px; /* Padding around the container */
+}
+
+.option-img {
+    width: 100px; /* Fixed width */
+    height: 100px; /* Fixed height to maintain aspect ratio */
+    border-radius: 50%; /* Keeps the images rounded */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    cursor: pointer; /* Indicates the image is clickable */
+    border: 4px solid transparent; /* Prepares for border change on hover */
+    transition: transform 0.3s ease, border 0.3s ease; /* Smooth transition for zoom and border */
+}
+
+.option-img:hover {
+    border: 4px solid white; /* White border on hover */
+    transform: scale(1.05); /* Zoom effect */
+}
