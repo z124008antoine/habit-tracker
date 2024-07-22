@@ -4,21 +4,19 @@ h1 {
 }
 
 .habit {
-    margin: 3rem 0;
-    display: grid;
-    grid-template-columns: 50% 5% auto;
-    align-items: center;
+    margin: 3rem auto;
+    display: flex;
+    align-items: end;
     background-image: url('/images/ui/line-pink-big.png');
+    padding-left: 2.5rem;
+    padding-bottom: 3rem;
     background-repeat: no-repeat;
-    background-position: center;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    background-position: bottom left;
+    max-width: 30rem;
 }
 
 .habit-title {
-    padding-left: 2rem;
-    padding-bottom: 3rem;
+    flex: 1;
 }
 
 .edit-habits{
@@ -38,4 +36,11 @@ h1 {
     position: fixed;
     bottom: 0;
     right: 0;
+}
+
+@media screen and (max-width: 740px) {
+
+    .habit .neon-button {
+        font-size: 1.4rem;
+    }
 }
