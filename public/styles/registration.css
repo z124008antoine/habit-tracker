@@ -1,6 +1,7 @@
 form {
     width: 100%;
-    max-width: 330px;
+    width: fit-content;
+    max-width: 500px;
     padding: 15px;
     margin: auto;
     display: flex;
@@ -25,4 +26,8 @@ h2{
 
 p{
     text-align: center;
+}
+
+.text-input, .large-text-input {
+    margin: 0;
 }

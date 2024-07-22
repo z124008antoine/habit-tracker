@@ -18,7 +18,7 @@
 
     function get_all_habits($user_id) {
         global $conn;
-        $sql = "SELECT id, name FROM habits WHERE user_id = $user_id";
+        $sql = "SELECT id, name, description, reward FROM habits WHERE user_id = $user_id";
         $statement = $conn->prepare($sql);
         $statement->execute();
         return $statement->fetchAll();
