@@ -109,21 +109,42 @@ main {
 
 .username{
     margin-bottom: 25px;
+    font-size: 2.2em;
+    margin-top: 10px;
 }
 
-.avatar {
-    width: 300px; /* Match the width of the image to keep the container's shape consistent */
-    height: 300px; /* Match the height of the image */
-    border-radius: 50%; /* This maintains the circular shape for the container */
-    background-color: #e0e0e0; /* Example background color */
-    display: flex; /* Ensures the contents are properly centered */
-    justify-content: center; /* Centers the contents horizontally */
-    align-items: center; /* Centers the contents vertically */
-    overflow: hidden; /* Ensures no overflow outside the circular boundary */
-    margin-bottom: 20px; /* Adds space below the avatar */
+.avatar-container {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+    margin-bottom: 20px; /* You might need to adjust this to accommodate the overlapping text */
+    position: relative; /* This is necessary for absolute positioning of children */
+    text-align: center;
 }
 
-.avatar img {
+.change-avatar-text {
+    display: none; /* Initially hidden */
+    position: absolute;
+    bottom: -25px; /* Adjust this value as needed to move the text below the avatar container */
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    background-color: rgb(0, 0, 0);
+    padding: 5px;
+    border-radius: 5px;
+    white-space: nowrap; /* Prevents the text from wrapping */
+}
+
+.avatar-container:hover .change-avatar-text {
+    display: block;
+}
+
+.avatar-container img {
     width: 300px; /* Adjust based on your preference */
     height: 300px; /* Make sure width and height are equal */
     border-radius: 50%; /* This creates the circular shape */

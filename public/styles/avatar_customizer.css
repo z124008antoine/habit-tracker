@@ -1,0 +1,14 @@
+section {
+    margin: 5rem 0;
+}
+
+h1 {
+    margin: 1rem 0;
+    background-image: url('/images/ui/line-pink.png');
+    background-repeat: no-repeat;
+    padding-bottom: 0.3em;
+    padding-top: 1em;
+    padding-left: 0.8em;
+    margin-left: -1rem;
+}
+
