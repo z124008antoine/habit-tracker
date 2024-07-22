@@ -12,8 +12,11 @@
     <div class="container">
         <div class="left-column">
             <!-- Content for the left column -->
-            <div class="avatar">
-                <img alt="profile picture" src="images/avatars/avatar_<?php echo isset($user_data['profile_picture']) ? $user_data['profile_picture'] : 0 ?>.png">
+            <div class="avatar-container">
+                <a href="avatar_customizer.php">
+                    <img alt="profile picture" src="images/avatars/avatar_<?php echo isset($user_data['profile_picture']) ? $user_data['profile_picture'] : 0 ?>.png">
+                </a>
+                <span class="change-avatar-text">Change your avatar</span>
             </div>
             <h2 class="username" id="username-display"><?php echo $user_data['username'] ?></h2>
             <?php
