@@ -36,7 +36,7 @@
         onclick="completeHabit(this, <?= $value["id"] ?>)">
         DONE
     </button>
-    <br>
+    
     <p class="reward"><?= $value["reward"] ?>xp</p>
 </div>
 
