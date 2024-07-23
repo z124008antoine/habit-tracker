@@ -11,7 +11,7 @@
     <input class="text-input" type="text" id="habit_name" name="habit_name" required
         placeholder="go grocery shopping"><br><br>
     <label for="habit_description">Habit Description:</label>
-    <textarea class="large-text-input" type="text" id="habit_description" name="habit_description" required
+    <textarea class="textarea-input" type="text" id="habit_description" name="habit_description" required
         placeholder="buy: 1x tomato, 1x potato"></textarea><br><br> 
     <label for="habit_reward">Habit Reward:</label>
     <input class="text-input" type="number" id="habit_reward" name="habit_reward" required min="1" max="30" step="1"

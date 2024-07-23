@@ -46,20 +46,20 @@
     // returns an array of habits with the following structure:
     // ['id' => [
     //     'name' => string,
-    //     'completed' => [0, 1, 0, 0, 0, 0, 0] // 0 for not completed, 1 for completed for each day of the week
+    //     'completed' => [0, 1, ..., 0, 1, 0] // 0 for not completed, 1 for completed for each day of the past 30 days
     // ]]
-    function get_weeks_habits($user_id) {
+    function get_last_realizations($user_id) {
         global $conn;
 
-        $startOfWeek = new DateTime('monday this week');
-        $startOfWeekStr = $startOfWeek->format('Y-m-d');
+        $startDay = new DateTime('-30 days');
+        $startDayStr = $startDay->format('Y-m-d');
 
         $sql = "SELECT habits.id, name, date,
             CASE WHEN realizations.habit_id IS NULL THEN 0 ELSE 1 END AS completed
             FROM habits
             LEFT JOIN realizations
             ON habits.id = realizations.habit_id
-            AND realizations.date >= '$startOfWeekStr'
+            AND realizations.date >= '$startDayStr'
             WHERE user_id = $user_id";
 
         $statement = $conn->prepare($sql);
@@ -71,16 +71,15 @@
             if (!isset($habits[$habit['id']])) {
                 $habits[$habit['id']] = [
                     'name' => $habit['name'],
-                    'completed' => [0, 0, 0, 0, 0, 0, 0]
+                    'completed' => array_fill(0, 30, 0)
                 ];
             }
             if (!is_null($habit['date'])) {
                 $date = new DateTime($habit['date']);
-                $day = $date->format('N') - 1;
-                $habits[$habit['id']]['completed'][$day] = $habit['completed'];
+                $day = $date->diff($startDay)->days;
+                $habits[$habit['id']]['completed'][$day] = 1;
             }
         }
-
         return $habits;
     }
 
