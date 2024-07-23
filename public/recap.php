@@ -38,6 +38,28 @@
     <canvas id="month-chart" width="70" height="20"></canvas>
 </section>
 
+<section>
+	<h1>Streaks</h1>
+	<?php
+	$maxStreak = 0;
+	foreach ($lastRealizations as $habit) {
+		$i = 30;
+		for (; $i > 0 && $habit['completed'][$i-1]; $i--);
+		$streak = 30 - $i;
+		if ($streak > $maxStreak) {
+			$maxStreak = $streak;
+		}
+		if ($streak > 1) {
+			?>
+			<p class="streaks">Wow, you've been doing <i><?= $habit['name'] ?></i> for <?= $streak ?> days in a row!</p>
+		<?php }
+	}
+	if ($maxStreak === 0) {
+		?>
+		<p class="streaks">You don't have any streaks yet, keep going!</p>
+	<?php } ?>
+</section>
+
 <script>
     const ctx = document.getElementById('month-chart');
 	const realizations = <?= json_encode($lastRealizations) ?>;
