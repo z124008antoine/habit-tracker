@@ -15,8 +15,8 @@ if (isset($_POST['register'])) {
         $count = $stmt->fetchColumn();
 
         if ($count > 0) {
-                echo "Username or email already in use. Go back to <a href='registration_form.php'>Registration</a>";
                 header("refresh:2;url=registration_form.php");
+                echo "Username or email already in use. Go back to <a href='registration_form.php'>Registration</a>";
                 $documentTitle = 'Registration_Failed'; // Set the title of the document for the layout
         } else {
                 // Hash the password
@@ -30,12 +30,12 @@ if (isset($_POST['register'])) {
                 $stmt->bindParam(':password', $hashedPassword);
 
                 if ($stmt->execute()) {
-                        echo "Registration successful! You can now <a href='login.php'>login</a>.";
                         header("refresh:2;url=login.php");
+                        echo "Registration successful! You can now <a href='login.php'>login</a>.";
                         $documentTitle = 'Registration_Successfull'; // Set the title of the document for the layout
                 } else {
-                        echo "Error: " . $stmt->errorInfo()[2];#
                         header("refresh:4;url=registration_form.php");
+                        echo "Error: " . $stmt->errorInfo()[2];#
                         $documentTitle = 'Registration_Failed'; // Set the title of the document for the layout
                 }
         }
