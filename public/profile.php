@@ -14,10 +14,14 @@
         <div class="left-column">
             <!-- Content for the left column -->
             <div class="avatar-container">
-                <a href="avatar_customizer.php">
+                <?php if ($_SESSION['user'] == $user_id) { ?>
+                    <a href="avatar_customizer.php">
+                        <img alt="profile picture" src=<?php echo $profile_picture ?>>
+                    </a>
+                    <span class="change-avatar-text">Change your avatar</span>
+                <?php } else { ?>
                     <img alt="profile picture" src=<?php echo $profile_picture ?>>
-                </a>
-                <span class="change-avatar-text">Change your avatar</span>
+                <?php } ?>
             </div>
             <h2 class="username" id="username-display"><?php echo $user_data['username'] ?></h2>
             <?php

@@ -3,7 +3,7 @@
 
     function search_users($search, $current_user) {
         global $conn;
-        $sql = "SELECT id, username, profile_picture FROM users WHERE username LIKE :search AND id != :current_user ORDER BY username ASC LIMIT 10";
+        $sql = "SELECT id, username FROM users WHERE username LIKE :search AND id != :current_user ORDER BY username ASC LIMIT 10";
         $statement = $conn->prepare($sql);
         $statement->execute(['search' => "%$search%", 'current_user' => $current_user]);
         return $statement->fetchAll();
@@ -11,7 +11,7 @@
 
     function get_following_users($current_user) {
         global $conn;
-        $sql = "SELECT users.id, users.username, users.profile_picture 
+        $sql = "SELECT users.id, users.username
                 FROM users 
                 INNER JOIN user_follows ON users.id = user_follows.followed_id 
                 WHERE user_follows.follower_id = :current_user";
