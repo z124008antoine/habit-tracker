@@ -30,18 +30,20 @@
             ?>
             <form id="edit-profile-form" action="update_profile.php" method="post">
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username" value="<?php echo $user_data['username']; ?>">
+                <input class="text-input" type="text" id="username" name="username" value="<?php echo $user_data['username']; ?>">
                 <label for="bio">Bio:</label>
-                <textarea class="large-text-input" id="bio" name="bio"><?php echo $user_data['bio']; ?></textarea>
+                <textarea class="textarea-input" id="bio" name="bio"><?php echo $user_data['bio']; ?></textarea>
                 <div id="bio-char-count">0 / 3000 characters</div>
             </form>
             <?php if ($_SESSION['user'] == $user_id) { ?>
-                <button class="profile-edit-button" id="edit-profile-button">Edit Profile</button>
                 <div id="edit-profile-form-buttons">
-                    <button id="cancel-btn">Cancel</button>
-                    <button id="save-btn">Save</button>
+                    <button class="neon-button" id="cancel-btn">Cancel</button>
+                    <button class="neon-button-negativ" id="save-btn">Save</button>
                 </div>
-                <button class="profile-edit-button" onclick="window.location.href = '/logout.php';">Logout</button>
+                <div class="button-pair">
+                    <button class="neon-button" style="display: inline;" id="edit-profile-button">Edit</button>
+                    <button class="neon-button-negativ" style="display: inline;" onclick="window.location.href = '/logout.php';">Logout</button>
+                </div>
             <?php } else if ($follows) { ?>
             <form method="POST" action="database/users.php">
                 <input type="hidden" name="current_user" value="<?php echo $_SESSION['user']; ?>">
