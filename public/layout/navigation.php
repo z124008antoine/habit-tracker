@@ -5,7 +5,7 @@
         <li><a class="page-link" href="profiles.php">Profiles</a></li>
         <li>
             <a href="profile.php" class="profile">
-                <img alt="profile picture" src="images/avatars/avatar_<?php echo $_SESSION["pfp"] ?? 0 ?>.png">
+                <img alt="profile picture" src=<?php echo $_SESSION["pfp"] ?? 0 ?>>
             </a>
         </li>
     </ul>

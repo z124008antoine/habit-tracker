@@ -10,6 +10,7 @@
     include __DIR__ . '/components/progress_bar.php';
     $user_id = $_GET['user_id'] ?? $_SESSION['user'];
     $user_data = get_user_data($user_id);
+    $profile_picture = get_user_profile_picture_path($user_id);
 ?>
 
 <section>
@@ -18,8 +19,7 @@
             <!-- Content for the left column -->
             <div class="avatar-container">
                 <a href="avatar_customizer.php">
-                    <img alt="profile picture"
-                        src="images/avatars/avatar_<?php echo isset($user_data['profile_picture']) ? $user_data['profile_picture'] : 0 ?>.png">
+                    <img alt="profile picture" src=<?php echo $profile_picture ?>>
                 </a>
                 <span class="change-avatar-text">Change your avatar</span>
             </div>
@@ -32,18 +32,22 @@
             ?>
             <form id="edit-profile-form" action="update_profile.php" method="post">
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username" value="<?php echo $user_data['username']; ?>">
+                <input class="text-input" type="text" id="username" name="username"
+                    value="<?php echo $user_data['username']; ?>">
                 <label for="bio">Bio:</label>
-                <textarea class="large-text-input" id="bio" name="bio"><?php echo $user_data['bio']; ?></textarea>
+                <textarea class="textarea-input" id="bio" name="bio"><?php echo $user_data['bio']; ?></textarea>
                 <div id="bio-char-count">0 / 3000 characters</div>
             </form>
             <?php if ($_SESSION['user'] == $user_id) { ?>
-            <button class="profile-edit-button" id="edit-profile-button">Edit Profile</button>
             <div id="edit-profile-form-buttons">
-                <button id="cancel-btn">Cancel</button>
-                <button id="save-btn">Save</button>
+                <button class="neon-button" id="cancel-btn">Cancel</button>
+                <button class="neon-button-negativ" id="save-btn">Save</button>
             </div>
-            <button class="profile-edit-button" onclick="window.location.href = '/logout.php';">Logout</button>
+            <div class="button-pair">
+                <button class="neon-button" style="display: inline;" id="edit-profile-button">Edit</button>
+                <button class="neon-button-negativ" style="display: inline;"
+                    onclick="window.location.href = '/logout.php';">Logout</button>
+            </div>
             <?php } else if ($follows) { ?>
             <form method="POST" action="database/users.php">
                 <input type="hidden" name="current_user" value="<?php echo $_SESSION['user']; ?>">

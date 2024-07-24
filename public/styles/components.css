@@ -23,6 +23,7 @@
     width: 100%;
     max-width: 322px;
     height: 6rem;
+    overflow: hidden;
 }
 
 .progress-bar img {

@@ -4,28 +4,34 @@
         'username' => 'John',
         'password' => 'password',
         'email' => 'john@gmail.com',
-        'profile_picture' => 0,
         'bio' => 'Hello, I am John. I like to exercise and read.',
         'level' => 2,
         'xp' => 113,
+        'avatar_skin_color' => 0,
+        'avatar_hair_style' => 0,
+        'avatar_hair_color' => 0,
     ];
     $dummy_users[] = [
         'username' => 'Jane',
         'password' => 'password',
         'email' => 'jane@gmail.com',
-        'profile_picture' => 1,
         'bio' => 'Hello, I am Jane. I like to meditate and write.',
         'level' => 1,
         'xp' => 50,
+        'avatar_skin_color' => 0,
+        'avatar_hair_style' => 0,
+        'avatar_hair_color' => 0,
     ];
     $dummy_users[] = [
         'username'=> 'Jack',
         'password'=> 'password',
         'email'=> 'jack@gmail.com',
-        'profile_picture'=> 2,
         'bio'=> 'Hello, I am Jack. I like to code and cook.',
         'level'=> 3,
         'xp'=> 75,
+        'avatar_skin_color' => 0,
+        'avatar_hair_style' => 0,
+        'avatar_hair_color' => 0,
     ];
 
     $dummy_habits = [];
