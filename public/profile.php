@@ -44,8 +44,8 @@
             </form>
             <?php if ($_SESSION['user'] == $user_id) { ?>
             <div id="edit-profile-form-buttons">
-                <button class="neon-button" id="cancel-btn">Cancel</button>
-                <button class="neon-button-negativ" id="save-btn">Save</button>
+                <button class="neon-button-negativ" id="cancel-btn">Cancel</button>
+                <button class="neon-button" id="save-btn">Save</button>
             </div>
             <div class="button-pair">
                 <button class="neon-button" id="edit-profile-button">Edit</button>
@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', function() {
     cancelButton.addEventListener('click', () => {
         //usernameDisplay.style.display = 'block';
         editForm.style.display = 'none';
-        editProfileButton.style.display = 'block';
+        editProfileButton.style.display = '';
         formButtons.style.display = 'none';
         editForm.reset();
     });
