@@ -6,6 +6,7 @@
 <?php include __DIR__ . '/database/user.php';
     $user_id = $_GET['user_id'] ?? $_SESSION['user'];
     $user_data = get_user_data($user_id);
+    $profile_picture = get_user_profile_picture_path($user_id);
 ?>
 
 <section>
@@ -14,7 +15,7 @@
             <!-- Content for the left column -->
             <div class="avatar-container">
                 <a href="avatar_customizer.php">
-                    <img alt="profile picture" src="images/avatars/avatar_<?php echo isset($user_data['profile_picture']) ? $user_data['profile_picture'] : 0 ?>.png">
+                    <img alt="profile picture" src=<?php echo $profile_picture ?>>
                 </a>
                 <span class="change-avatar-text">Change your avatar</span>
             </div>

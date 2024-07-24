@@ -1,21 +1,22 @@
 <?php
     session_start();
-    if (isset($_SESSION["user"]) && isset($_SESSION["pfp"]))
+    if (isset($_SESSION["user"]))
     {
         header("Location: /");
         exit();
     }
 
     include 'database/db.php';
+    include 'database/user.php';
     if (isset($_POST["mail"]) && isset($_POST["password"]))
     {
-        $statement = $conn->prepare("SELECT id, password, profile_picture, username, bio FROM users WHERE email = ?");
+        $statement = $conn->prepare("SELECT id, password, username, bio FROM users WHERE email = ?");
         $statement->execute([$_POST["mail"]]);
         $user = $statement->fetch();
         
         if (password_verify($_POST["password"], $user["password"])) {
             $_SESSION["user"] = $user["id"];
-            $_SESSION["pfp"] = $user["profile_picture"];
+            $_SESSION["pfp"] = get_user_profile_picture_path($user["id"]);
             header("Location: /");
             exit();
         } else {

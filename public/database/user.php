@@ -3,10 +3,15 @@
 
     function get_user_data($user_id) {
         global $conn;
-        $sql = "SELECT id, username, profile_picture, bio, level, xp FROM users WHERE id = :id";
+        $sql = "SELECT id, username, bio, level, xp, avatar_skin_color, avatar_hair_style, avatar_hair_color FROM users WHERE id = :id";
         $statement = $conn->prepare($sql);
         $statement->execute(['id' => $user_id]);
         return $statement->fetch();
+    }
+
+    function get_user_profile_picture_path($user_id) {
+        $user_data = get_user_data($user_id);
+        return "images/avatars/" . $user_data['avatar_skin_color'] . "/" . $user_data['avatar_hair_style'] . "/" . $user_data['avatar_hair_color'] . ".png";
     }
 
     function add_user_xp($user_id, $val_query = "0") {

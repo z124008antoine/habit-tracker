@@ -81,3 +81,12 @@
     border: 4px solid white; /* White border on hover */
     transform: scale(1.05); /* Zoom effect */
 }
+
+.buttons-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-direction: row;
+    margin-top: 10px;
+}

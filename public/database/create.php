@@ -14,11 +14,13 @@
         id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         username VARCHAR(30) NOT NULL,
         email VARCHAR(50) NOT NULL,
-        profile_picture INT(6) DEFAULT 0,
         password VARCHAR(255) NOT NULL,
         bio VARCHAR(3000) NULL,
         level INT(6) DEFAULT 1,
         xp INT(6) DEFAULT 0,
+        avatar_skin_color INT(6) DEFAULT 0,
+        avatar_hair_style INT(6) DEFAULT 0,
+        avatar_hair_color INT(6) DEFAULT 0,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         UNIQUE (email)
     )";
@@ -60,8 +62,8 @@
     
     foreach ($dummy_users as $user) {
         $hashed = password_hash($user['password'], PASSWORD_DEFAULT);
-        $conn->query("INSERT INTO users (username, email, password, profile_picture, bio, level, xp)
-            VALUES ('{$user['username']}', '{$user['email']}', '{$hashed}', '{$user['profile_picture']}', '{$user['bio']}', '{$user['level']}', '{$user['xp']}')");
+        $conn->query("INSERT INTO users (username, email, password, bio, level, xp, avatar_skin_color, avatar_hair_style, avatar_hair_color)
+            VALUES ('{$user['username']}', '{$user['email']}', '{$hashed}', '{$user['bio']}', '{$user['level']}', '{$user['xp']}', '{$user['avatar_skin_color']}', '{$user['avatar_hair_style']}', '{$user['avatar_hair_color']}')");
     }
 
     foreach ($dummy_habits as $habit) {
@@ -73,5 +75,6 @@
         $conn->query("INSERT INTO realizations (habit_id, date)
             VALUES ('{$realization['habit_id']}', '{$realization['date']}')");
     }
+
 
     echo "Tables created successfully.";
