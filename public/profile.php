@@ -3,7 +3,11 @@
 <?php function renderPage() { ?>
 
 <!-- Retrieve user data from database -->
+<!-- Please leave the includes here -->
 <?php include __DIR__ . '/database/user.php';
+    include __DIR__ . '/database/habits.php';
+    include __DIR__ . '/database/users.php';
+    include __DIR__ . '/components/progress_bar.php';
     $user_id = $_GET['user_id'] ?? $_SESSION['user'];
     $user_data = get_user_data($user_id);
     $profile_picture = get_user_profile_picture_path($user_id);
@@ -25,29 +29,29 @@
             </div>
             <h2 class="username" id="username-display"><?php echo $user_data['username'] ?></h2>
             <?php
-            include __DIR__ . '/database/users.php';
             // Check if the user follows the visited user profile
             $follows = check_follow($_SESSION['user'], $user_id);
             
-            include __DIR__ . '/components/progress_bar.php';
             renderBar($user_data['xp'], 100 + $user_data['level'] * 20, "profile-xp", $user_data['level']);
             ?>
             <form id="edit-profile-form" action="update_profile.php" method="post">
                 <label for="username">Username:</label>
-                <input class="text-input" type="text" id="username" name="username" value="<?php echo $user_data['username']; ?>">
+                <input class="text-input" type="text" id="username" name="username"
+                    value="<?php echo $user_data['username']; ?>">
                 <label for="bio">Bio:</label>
                 <textarea class="textarea-input" id="bio" name="bio"><?php echo $user_data['bio']; ?></textarea>
                 <div id="bio-char-count">0 / 3000 characters</div>
             </form>
             <?php if ($_SESSION['user'] == $user_id) { ?>
-                <div id="edit-profile-form-buttons">
-                    <button class="neon-button" id="cancel-btn">Cancel</button>
-                    <button class="neon-button-negativ" id="save-btn">Save</button>
-                </div>
-                <div class="button-pair">
-                    <button class="neon-button" style="display: inline;" id="edit-profile-button">Edit</button>
-                    <button class="neon-button-negativ" style="display: inline;" onclick="window.location.href = '/logout.php';">Logout</button>
-                </div>
+            <div id="edit-profile-form-buttons">
+                <button class="neon-button" id="cancel-btn">Cancel</button>
+                <button class="neon-button-negativ" id="save-btn">Save</button>
+            </div>
+            <div class="button-pair">
+                <button class="neon-button" style="display: inline;" id="edit-profile-button">Edit</button>
+                <button class="neon-button-negativ" style="display: inline;"
+                    onclick="window.location.href = '/logout.php';">Logout</button>
+            </div>
             <?php } else if ($follows) { ?>
             <form method="POST" action="database/users.php">
                 <input type="hidden" name="current_user" value="<?php echo $_SESSION['user']; ?>">
@@ -63,6 +67,52 @@
             <?php } ?>
         </div>
         <div class="right-column">
+            <script>
+            function toggleHabits() {
+                var habitsContainer = document.getElementById('habits-container');
+                if (habitsContainer.style.display === 'none') {
+                    habitsContainer.style.display = 'flex';
+                    habitsContainer.style.transition = 'display 0.5s ease-in-out';
+                    habitsContainer.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                } else {
+                    habitsContainer.style.display = 'none';
+                    habitsContainer.style.transition = 'display 0.5s ease-in-out';
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+            </script>
+            <div class="show-habits">
+                <?php
+                if ($_SESSION['user'] != $user_id) {  ?>
+                <button class="show-habits-button" onclick="toggleHabits()">Show Habits</button>
+                <ul class="other-users-habits" id="habits-container" style="display: none;">
+                    <?php
+                    $habits = get_all_habits($user_id);
+                    foreach ($habits as $key => $value) {?>
+                    <li class="habit">
+                        <div class="habit-title">
+                            <h2><?= $value["name"] ?></h2>
+                            <p><?= $value["description"] ?></p>
+                        </div>
+                        <p class="reward"><?= $value["reward"] ?>xp</p>
+                        <form action="database/habits.php" method="POST">
+                            <input type="hidden" name="user_id" value="<?php echo $_SESSION['user']; ?>">
+                            <input type="hidden" name="private" value="<?php echo 0; ?>">
+                            <input type="hidden" name="habit_name" value="<?= $value["name"] ?>">
+                            <input type="hidden" name="habit_description" value="<?= $value["description"] ?>">
+                            <input type="hidden" name="habit_reward" value="<?= $value["reward"] ?>">
+                            <input type="submit" name="copy_habit" value="Copy" class="copy-habit-form">
+                        </form>
+                    </li>
+                    <?php } ?>
+                </ul>
+                <?php } ?>
+            </div>
             <!-- Content for the right column -->
             <div class="bio">
                 <h4>Bio</h4>
@@ -70,7 +120,6 @@
                 <!-- <button class="bio-edit-button"></button> -->
             </div>
             <div class="activity">
-                <?php include __DIR__ . '/database/habits.php'; ?>
                 <h1>My Year</h1>
                 <div class="year-days">
                     <span class="year-day-title">M</span>
@@ -92,11 +141,9 @@
                     $currentDay = new DateTime('first day of january');
                     foreach ($yearHabits as $nbCompleted) {
                         ?>
-                        <div
-                            class="year-day<?= $nbCompleted === $maxCompleted ? ' all-completed' : '' ?>"
+                    <div class="year-day<?= $nbCompleted === $maxCompleted ? ' all-completed' : '' ?>"
                         style="filter: grayscale(<?= ($maxCompleted - $nbCompleted) / $maxCompleted ?>);"
-                            title="<?= $currentDay->format('dS F') . ': ' . $nbCompleted . ' completed' ?>"
-                        ></div>
+                        title="<?= $currentDay->format('dS F') . ': ' . $nbCompleted . ' completed' ?>"></div>
                     <?php
                         $currentDay->modify('+1 day');
                     }
@@ -119,55 +166,54 @@
 </section>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const editProfileButton = document.getElementById('edit-profile-button');
-        if (!editProfileButton)
-            return; // skip if the button is not found (aka not on the user's own profile)
-        const usernameDisplay = document.getElementById('username-display');
-        const bioDisplay = document.getElementById('bio-display');
-        const editForm = document.getElementById('edit-profile-form');
-        const saveButton = document.getElementById('save-btn');
-        const cancelButton = document.getElementById('cancel-btn');
-        const formButtons = document.getElementById('edit-profile-form-buttons');
-        const bioTextarea = document.getElementById('bio');
-        
-        // Initialize the character count on page load
-        updateCharacterCount();
+document.addEventListener('DOMContentLoaded', function() {
+    const editProfileButton = document.getElementById('edit-profile-button');
+    if (!editProfileButton)
+        return; // skip if the button is not found (aka not on the user's own profile)
+    const usernameDisplay = document.getElementById('username-display');
+    const bioDisplay = document.getElementById('bio-display');
+    const editForm = document.getElementById('edit-profile-form');
+    const saveButton = document.getElementById('save-btn');
+    const cancelButton = document.getElementById('cancel-btn');
+    const formButtons = document.getElementById('edit-profile-form-buttons');
+    const bioTextarea = document.getElementById('bio');
 
-        // Function to update character count
-        function updateCharacterCount() {
-            var charCountDisplay = document.getElementById('bio-char-count');
-            var currentLength = bioTextarea.value.length;
-            if(currentLength > 3000){
-                bioTextarea.value = bioTextarea.value.substring(0, 3000);
-                currentLength = bioTextarea.value.length;
-            }
-            charCountDisplay.textContent = `${currentLength} / 3000 characters`;
+    // Initialize the character count on page load
+    updateCharacterCount();
+
+    // Function to update character count
+    function updateCharacterCount() {
+        var charCountDisplay = document.getElementById('bio-char-count');
+        var currentLength = bioTextarea.value.length;
+        if (currentLength > 3000) {
+            bioTextarea.value = bioTextarea.value.substring(0, 3000);
+            currentLength = bioTextarea.value.length;
         }
+        charCountDisplay.textContent = `${currentLength} / 3000 characters`;
+    }
 
-        bioTextarea.addEventListener('input', updateCharacterCount);
+    bioTextarea.addEventListener('input', updateCharacterCount);
 
-        editProfileButton.addEventListener('click', () => {
-            //usernameDisplay.style.display = 'none';
-            editForm.style.display = 'flex';
-            editProfileButton.style.display = 'none';
-            formButtons.style.display = 'flex';
-            updateCharacterCount();
-        });
-
-        cancelButton.addEventListener('click', () => {
-            //usernameDisplay.style.display = 'block';
-            editForm.style.display = 'none';
-            editProfileButton.style.display = 'block';
-            formButtons.style.display = 'none';
-            editForm.reset();
-        });
-
-        saveButton.addEventListener('click', () => {
-            editForm.submit();
-        });
+    editProfileButton.addEventListener('click', () => {
+        //usernameDisplay.style.display = 'none';
+        editForm.style.display = 'flex';
+        editProfileButton.style.display = 'none';
+        formButtons.style.display = 'flex';
+        updateCharacterCount();
     });
-    
+
+    cancelButton.addEventListener('click', () => {
+        //usernameDisplay.style.display = 'block';
+        editForm.style.display = 'none';
+        editProfileButton.style.display = 'block';
+        formButtons.style.display = 'none';
+        editForm.reset();
+    });
+
+    saveButton.addEventListener('click', () => {
+        editForm.submit();
+    });
+});
 </script>
 <?php
 }

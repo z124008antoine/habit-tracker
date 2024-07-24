@@ -179,3 +179,37 @@
             echo "Error: " . $stmt->errorInfo()[2];
         }
     }
+
+    # Copy a habit from someone else
+    if (isset($_POST['copy_habit'])) {
+        $user_id = $_POST['user_id'];
+        $private = $_POST['private'];
+        $habit_name = $_POST['habit_name'];
+        $habit_description = $_POST['habit_description'];
+        $habit_reward = $_POST['habit_reward'];
+
+        // Insert habit into the database
+        $query = "INSERT INTO habits (user_id, private, name, description, reward) VALUES (:user_id, :private, :habit_name, :habit_description, :habit_reward)";
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':user_id', $user_id);
+        $stmt->bindParam(':private', $private);
+        $stmt->bindParam(':habit_name', $habit_name);
+        $stmt->bindParam(':habit_description', $habit_description);
+        $stmt->bindParam(':habit_reward', $habit_reward);
+
+        if ($stmt->execute()) {
+
+            // echo '<script>';
+            // echo 'setTimeout(function() { window.location.href = "' . $_SERVER['HTTP_REFERER'] . '"; }, 2000);';
+            // echo '</script>';
+            // echo '<div id="popup" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #f1f1f1; padding: 20px; border-radius: 5px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); z-index: 9999;">';
+            // echo 'Copy completed';
+            // echo '</div>';
+            #header("Location: " . $_SERVER['HTTP_REFERER']);
+            header("Location: /index.php" . "#footer");
+            
+            exit();
+        } else {
+            echo "Error: " . $stmt->errorInfo()[2];
+        }
+    }
