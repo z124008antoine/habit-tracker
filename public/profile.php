@@ -48,8 +48,8 @@
                 <button class="neon-button-negativ" id="save-btn">Save</button>
             </div>
             <div class="button-pair">
-                <button class="neon-button" style="display: inline;" id="edit-profile-button">Edit</button>
-                <button class="neon-button-negativ" style="display: inline;"
+                <button class="neon-button" id="edit-profile-button">Edit</button>
+                <button class="neon-button-negativ"
                     onclick="window.location.href = '/logout.php';">Logout</button>
             </div>
             <?php } else if ($follows) { ?>

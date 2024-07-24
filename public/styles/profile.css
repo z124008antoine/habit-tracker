@@ -109,6 +109,10 @@ main {
     margin: 1rem 0;
 }
 
+.button-pair button {
+    display: inline;
+}
+
 .username{
     margin-bottom: 25px;
     font-size: 2.2em;
