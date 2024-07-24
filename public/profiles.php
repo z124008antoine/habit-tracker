@@ -1,5 +1,6 @@
 <?php include __DIR__ . '/auth/guard.php'; ?>
 <?php include __DIR__ . '/database/users.php'; ?>
+<?php include __DIR__ . '/database/user.php'; ?>
 
 <?php function renderPage() { ?>
 
@@ -15,7 +16,7 @@
         ?>
         <li class="following">
             <a href="/profile.php?user_id=<?= $user['id'] ?>">
-                <img class="profile-pic" src="/images/avatars/avatar_<?= $user['profile_picture'] ?>.png"
+                <img class="profile-pic" src=<?php echo get_user_profile_picture_path($user['id'])?>
                     alt="<?= $user['username'] ?>">
                 <br>
                 <?= $user['username'] ?>
@@ -44,7 +45,7 @@
             ?>
         <div class="result">
             <a href="/profile.php?user_id=<?= $user['id'] ?>">
-                <img class="profile-pic" src="/images/avatars/avatar_<?= $user['profile_picture'] ?>.png"
+                <img class="profile-pic" src=<?php echo get_user_profile_picture_path($user['id'])?>
                     alt="<?= $user['username'] ?>">
                 <?= $user['username'] ?>
             </a>

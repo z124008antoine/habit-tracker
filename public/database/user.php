@@ -11,7 +11,7 @@
 
     function get_user_profile_picture_path($user_id) {
         $user_data = get_user_data($user_id);
-        return "images/avatars/" . $user_data['avatar_skin_color'] . "/" . $user_data['avatar_hair_style'] . "/" . $user_data['avatar_hair_color'] . ".png";
+        return "images/avatars/" . $user_data['avatar_skin_color'] . "/" . $user_data['avatar_hair_color'] . "/" . $user_data['avatar_hair_style'] . ".png";
     }
 
     function add_user_xp($user_id, $val_query = "0") {
