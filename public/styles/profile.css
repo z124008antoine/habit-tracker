@@ -17,7 +17,6 @@ main {
     max-width: 1200px; /* Set the maximum width for the container */
     margin: 0 auto; /* Center the container horizontally */
     gap: 80px; /* Add gap between the columns */
-    padding: 10px; /* Add padding to avoid content touching the container edge */
     align-items: flex-start;
 }
 
@@ -74,7 +73,6 @@ main {
 .left-column {
     flex: 1;
     max-width: 350px; /* Set the maximum width for the left column */
-    padding: 20px;
     /* background-color: #f8f9fa; */
     display: flex; /* Make left-column a flex container */
     justify-content: center; /* Center children horizontally */
@@ -105,6 +103,10 @@ main {
 
 #edit-profile-form label{
     margin-top: 15px;
+}
+
+.button-pair {
+    margin: 1rem 0;
 }
 
 .username{
@@ -310,46 +312,6 @@ h1 {
     }
 }
 
-input[type="text"] {
-    width: 100%; /* Set a fixed width */
-    height: 40px; /* Set a fixed height */
-    padding: 10px; /* Add padding inside the input */
-    border: 1px solid #ccc; /* Add a border */
-    border-radius: 5px; /* Add rounded corners */
-    background-image: url('path/to/your/background-image.jpg'); /* Path to your image */
-    background-size: cover; /* Ensure the background image covers the entire input */
-    background-repeat: no-repeat; /* Prevent the image from repeating */
-    background-position: center; /* Center the background image */
-    resize: none; /* Disable resizing */
-    overflow: hidden; /* Prevent overflow */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
-}
-
-/* Adjusting for different sizes */
-input[type="text"]:focus {
-    filter: drop-shadow(0 0 5px var(--color-2-bright));
-    background-size: 100% 100%; /* Ensure the background size adjusts when resizing */
-}
-
-.large-text-input {
-    background-image: url('/images/ui/text-input.png');
-    width: 100%; /* Set a fixed width */
-    height: 150px; /* Set a fixed height */
-    padding: 10px; /* Add padding inside the textarea */
-    border: 1px solid #ccc; /* Add a border */
-    border-radius: 5px; /* Add rounded corners */
-    background-size: cover; /* Ensure the background image covers the entire textarea */
-    background-repeat: no-repeat; /* Prevent the image from repeating */
-    background-position: center; /* Center the background image */
-    resize: vertical; /* Allow resizing both horizontally and vertically */
-    overflow: auto; /* Allow scrolling if the content overflows */
-}
-
-.large-text-input:focus {
-    filter: drop-shadow(0 0 5px var(--color-2-bright));
-    background-size: 100% 100%; /* Adjust the background size when focused */	
-}
-
 #edit-profile-form-buttons {
     width: 100%; /* Set the width to 100% */
     display: flex; /* Use Flexbox */
@@ -358,37 +320,6 @@ input[type="text"]:focus {
     display: none; /* Hide the buttons by default */
     animation: slideDown 0.5s ease-out forwards;
 }
-
-#edit-profile-form-buttons #cancel-btn {
-    background-color: #d9534f; /* Example background color */
-    display: block; /* Keeps the button as a block element */
-    width: 50%; /* Makes the button take the full width of its container */
-    margin: 20px auto; /* Increases space above the button and centers it horizontally */
-    padding: 10px 0; /* Adjusts padding for better visual appearance, removing horizontal padding */
-    color: white; /* Text color */
-    border: none; /* Removes the border */
-    border-radius: 5px; /* Adds rounded corners */
-    cursor: pointer; /* Changes the cursor to a pointer on hover */
-    font-size: 16px; /* Adjusts the font size */
-    text-align: center; /* Ensures the text is centered */
-    font-family: 'Pixeloid', sans-serif;
-}
-
-#edit-profile-form-buttons #save-btn {
-    display: block; /* Keeps the button as a block element */
-    width: 100%; /* Makes the button take the full width of its container */
-    margin: 20px auto; /* Increases space above the button and centers it horizontally */
-    padding: 10px 0; /* Adjusts padding for better visual appearance, removing horizontal padding */
-    background-color: #3e3e3e; /* Example background color */
-    color: white; /* Text color */
-    border: none; /* Removes the border */
-    border-radius: 5px; /* Adds rounded corners */
-    cursor: pointer; /* Changes the cursor to a pointer on hover */
-    font-size: 16px; /* Adjusts the font size */
-    text-align: center; /* Ensures the text is centered */
-    font-family: 'Pixeloid', sans-serif;
-}
-
 
 .follow-button {
     border: none;
