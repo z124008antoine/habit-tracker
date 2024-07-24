@@ -147,7 +147,7 @@ h1.form-title{
     background-size: 100% 100%;
 }
 .textarea-input {
-    width: min(90vw, 20em);
+    width: min(100%, 20em);
     height: 8em;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Adds a subtle shadow for depth */
     border-image: url('/images/ui/text-input.png') 30 stretch; /* Example path and settings */

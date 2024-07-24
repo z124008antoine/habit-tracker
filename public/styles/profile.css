@@ -111,12 +111,17 @@ main {
 
 .button-pair button {
     display: inline;
+    margin: 0 0.5rem;
 }
 
 .username{
     margin-bottom: 25px;
     font-size: 2.2em;
     margin-top: 10px;
+}
+
+.text-input {
+    margin: 0;
 }
 
 .avatar-container {
@@ -317,10 +322,6 @@ h1 {
 }
 
 #edit-profile-form-buttons {
-    width: 100%; /* Set the width to 100% */
-    display: flex; /* Use Flexbox */
-    justify-content: space-between; /* Align one button to the left and the other to the right */
-    gap: 15px; /* Add space between the buttons */
     display: none; /* Hide the buttons by default */
     animation: slideDown 0.5s ease-out forwards;
 }

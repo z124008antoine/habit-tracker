@@ -43,7 +43,7 @@
                 <div id="bio-char-count">0 / 3000 characters</div>
             </form>
             <?php if ($_SESSION['user'] == $user_id) { ?>
-            <div id="edit-profile-form-buttons">
+            <div class="button-pair" id="edit-profile-form-buttons">
                 <button class="neon-button-negativ" id="cancel-btn">Cancel</button>
                 <button class="neon-button" id="save-btn">Save</button>
             </div>
