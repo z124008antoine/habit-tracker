@@ -89,7 +89,7 @@
     $current_day = new DateTime('2023-08-01');
     $end_day = new DateTime();
 
-    $habit_ids = [1, 2, 3, 4, 5];
+    $habit_ids = [1, 2, 3, 4, 5, 6, 7, 8];
     while ($current_day < $end_day) {
         foreach ($habit_ids as $habit_id) {
             if (rand(1,2) <= 1) {
