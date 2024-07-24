@@ -14,13 +14,19 @@
         $statement->execute([$_POST["mail"]]);
         $user = $statement->fetch();
         
-        if (password_verify($_POST["password"], $user["password"])) {
-            $_SESSION["user"] = $user["id"];
-            $_SESSION["pfp"] = get_user_profile_picture_path($user["id"]);
-            header("Location: /");
-            exit();
+        if ($user) {
+            if (password_verify($_POST["password"], $user["password"])) {
+                $_SESSION["user"] = $user["id"];
+                $_SESSION["pfp"] = get_user_profile_picture_path($user["id"]);
+                header("Location: /");
+                exit();
+            } else {
+                $error = "Invalid password";
+                echo "Invalid password";
+            }
         } else {
-            $error = "Invalid email or password";
+            $error = "Invalid email";
+            echo "Invalid email";
         }
     }
 ?>
